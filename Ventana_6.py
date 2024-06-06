@@ -1,12 +1,12 @@
 from customtkinter import *
 #ventana 6
-root = CTk()
-root.title("CONDOR")
-root._set_appearance_mode("light")
-root.geometry("1000x600")
-root.resizable(0,0)
-root.config(bg = "#d7bb9f")
-root.iconbitmap("logo.ico")
+root6 = CTk()
+root6.title("CONDOR")
+root6._set_appearance_mode("light")
+root6.geometry("1000x600")
+root6.resizable(0,0)
+root6.config(bg = "#d7bb9f")
+root6.iconbitmap("images/ICONO.ico")
 #---------------------------VARIABLES---------------------------
 arrival_time = "13:00"
 departure_time = "10:00"
@@ -18,7 +18,7 @@ date_ = "2024-06-13"
 arrow = "-------------------------------------->"
 category = "Aluminio"
 font_1 = CTkFont(family="Inherit", size=18, weight="bold")
-principal_frame = CTkFrame(master = root,
+principal_frame = CTkFrame(master = root6,
                            width = 1000,
                            height = 600,
                            corner_radius = 10,
@@ -177,4 +177,4 @@ text_arrow.place(x = 103, y = 37, relwidth = 0.3, relheight = 0.1)
 text_category.place(x = 710, y = 30, relwidth = 0.1, relheight = 0.25)
 select_button.place(relx = 0.83, rely = 0.825, anchor = "center")
 text_reservation.place(x = 50, y = 480, relwidth = 0.35, relheight = 0.07)
-root.mainloop()
+root6.mainloop()

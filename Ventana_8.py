@@ -1,13 +1,13 @@
 from customtkinter import *
 import tkinter as tk
 #ventana 8
-root = CTk()
-root.title("CONDOR")
-root._set_appearance_mode("light")
-root.geometry("1000x600")
-root.resizable(0,0)
-root.config(bg = "#d7bb9f")
-root.iconbitmap("logo.ico")
+root8 = CTk()
+root8.title("CONDOR-AIRLINES")
+root8._set_appearance_mode("light")
+root8.geometry("1000x600")
+root8.resizable(0,0)
+root8.config(bg = "#d7bb9f")
+root8.iconbitmap("images/ICONO.ico")
 #---------------------------VARIABLES---------------------------
 arrival_time = "13:00"
 departure_time = "10:00"
@@ -33,7 +33,7 @@ month = ["January",
           "December"]
 years = ["2024", "2025", "2026", "2027", "2028", "2029", "2030","2031", "2032", "2033", "2034", "2035"]
 #---------------------------FRAMES---------------------------
-principal_frame = CTkFrame(master = root, 
+principal_frame = CTkFrame(master = root8, 
                            width = 1000, 
                            height = 600, 
                            corner_radius = 10, 
@@ -290,4 +290,5 @@ text_desde.place(relx = 0.583, rely = 0.45, anchor = "center")
 text_price.place(relx = 0.743, rely = 0.615, anchor = "center")
 text_category.place(relx = 0.88, rely = 0.3, anchor = "center")
 text_total_to_pay.place(relx = 0.6, rely = 0.9, anchor = "center")
-root.mainloop() 
+
+root8.mainloop() 

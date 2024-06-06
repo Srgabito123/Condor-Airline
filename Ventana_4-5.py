@@ -1,12 +1,12 @@
 from tkinter import *
 import customtkinter as ctk
 
-root = ctk.CTk()
-root.title("CONDOR")
-root._set_appearance_mode("light")
-root.geometry("1000x600")
-root.resizable(0, 0)
-root.config(bg = "#d7bb9f")
+root4_5 = ctk.CTk()
+root4_5.title("CONDOR")
+root4_5._set_appearance_mode("light")
+root4_5.geometry("1000x600")
+root4_5.resizable(0, 0)
+root4_5.config(bg = "#d7bb9f")
 #root.iconbitmap("logo.ico")
 
 #---------------------------FUNCTIONS---------------------------
@@ -90,7 +90,7 @@ font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
 
 #---------------------------FRAMES---------------------------
 
-frame_principal = ctk.CTkFrame(master = root,
+frame_principal = ctk.CTkFrame(master = root4_5,
                         width = 1000,
                         height = 600,
                         corner_radius = 10,
@@ -528,4 +528,4 @@ text_flechita.place(relx = 0.3, rely = 0.45, anchor = "center")
 seleccionar_plata.place(relx=0.5, rely=0.93, anchor="center")
 seleccionar_diamante.place(relx=0.5, rely=0.93, anchor="center")
 seleccionar_premium.place(relx=0.5, rely=0.93, anchor="center")
-root.mainloop()
+root4_5.mainloop()

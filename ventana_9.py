@@ -1,13 +1,13 @@
 from tkinter import *
 import customtkinter as ctk
 
-root = ctk.CTk()
-root.title("CONDOR")
-root._set_appearance_mode("light")
-root.geometry("1000x600")
-root.resizable(0, 0)
-root.config(bg = "light pink")
-root.iconbitmap("logo.ico")
+root9 = ctk.CTk()
+root9.title("CONDOR-AIRLINES")
+root9._set_appearance_mode("light")
+root9.geometry("1000x600")
+root9.resizable(0, 0)
+root9.config(bg = "light pink")
+root9.iconbitmap("images/ICONO.ico")
 
 #---------------------------FONTS---------------------------
 
@@ -15,11 +15,11 @@ font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
 
 #---------------------------FRAMES---------------------------
 
-frame_principal = ctk.CTkFrame(master = root,
+frame_principal = ctk.CTkFrame(master = root9,
                         width = 1000,
                         height = 600,
                         corner_radius = 10,
-                        fg_color = "light pink",
+                        fg_color = "#d7bb9f",
                         border_color = "white",
                         border_width = 2,
                         bg_color = "transparent"
@@ -64,4 +64,4 @@ frame_1.place(relx=0.5, rely=0.5, anchor="center")
 frame_pase.place(relx=0.5, rely=0.09, anchor="center")
 frame_cheap.place(relx=0.09, rely=0.5, anchor="center")
 
-root.mainloop()
+root9.mainloop()

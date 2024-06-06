@@ -1,13 +1,13 @@
 from tkinter import *
 import customtkinter as ctk
 
-root = ctk.CTk()
-root.title("CONDOR")
-root._set_appearance_mode("light")
-root.geometry("1000x600")
-root.resizable(0, 0)
-root.config(bg = "#d7bb9f")
-#root.iconbitmap("logo.ico")
+root7 = ctk.CTk()
+root7.title("CONDOR-AIRLINE")
+root7._set_appearance_mode("light")
+root7.geometry("1000x600")
+root7.resizable(0, 0)
+root7.config(bg = "#d7bb9f")
+root7.iconbitmap("images/ICONO.ico")
 
 #----------------------------VARIABLES OPTIPON MENUS-------------------------------
 
@@ -27,7 +27,7 @@ font_2 = ctk.CTkFont(family="Cooper Black", size=12)
 
 #-------------------------------------FRAMES----------------------------------------
 
-principal_frame = ctk.CTkFrame(root,
+principal_frame = ctk.CTkFrame(root7,
                         width = 1000,
                         height = 600,
                         corner_radius = 10,
@@ -226,4 +226,4 @@ email.place(relx = 0.8, rely = 0.7, anchor = "center")
 button_make_flight.place(relx = 0.2, rely = 0.7, anchor = "center")
 continue_flight.place(relx = 0.5, rely = 0.9, anchor = "center")
 
-root.mainloop()
+root7.mainloop()
