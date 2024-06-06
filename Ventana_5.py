@@ -6,10 +6,11 @@ root.title("CONDOR")
 root._set_appearance_mode("light")
 root.geometry("1000x600")
 root.resizable(0, 0)
-root.config(bg = "light pink")
-root.iconbitmap("logo.ico")
+root.config(bg = "#d7bb9f")
+#root.iconbitmap("logo.ico")
 
-#---------------------------funciones---------------------------
+#---------------------------FUNCTIONS---------------------------
+
 def eleccion_vuelo():
     if frame_eleccion_vuelo.winfo_viewable():
         frame_eleccion_vuelo.place_forget()
@@ -18,6 +19,7 @@ def eleccion_vuelo():
 
 def cerrar_ventana():
     frame_eleccion_vuelo.place_forget()
+
 #---------------------------VARIABLES---------------------------
 hora_llegada = "13:00"
 hora_salida = "10:00"
@@ -92,7 +94,7 @@ frame_principal = ctk.CTkFrame(master = root,
                         width = 1000,
                         height = 600,
                         corner_radius = 10,
-                        fg_color = "light pink",
+                        fg_color = "#d7bb9f",
                         border_color = "white",
                         border_width = 2,
                         bg_color = "transparent"
@@ -135,7 +137,7 @@ opcion2 = ctk.CTkButton(master = frame_vuelos,
                         width = 890, 
                         height = 160, 
                         corner_radius = 50,
-                        bg_color = "light pink",
+                        bg_color = "#d7bb9f",
                         hover_color = "beige",
                         text = " ",
                         border_color= "black",
@@ -148,7 +150,7 @@ opcion3 = ctk.CTkButton(master = frame_vuelos,
                         width = 890, 
                         height = 160, 
                         corner_radius = 50,
-                        bg_color = "light pink",
+                        bg_color = "#d7bb9f",
                         hover_color = "beige",
                         text = " ",
                         border_color= "black",
@@ -161,7 +163,7 @@ opcion4 = ctk.CTkButton(master = frame_vuelos,
                         width = 890, 
                         height = 160, 
                         corner_radius = 50,
-                        bg_color = "light pink",
+                        bg_color = "#d7bb9f",
                         hover_color = "beige",
                         text = " ",
                         border_color= "black",
@@ -267,7 +269,8 @@ plata_clase = ctk.CTkButton(master = frame_eleccion_vuelo,
                         border_width=2,
                         corner_radius=32,
                         hover_color= "beige",
-                        text= "")
+                        text= ""
+                        )
 
 diamante_clase = ctk.CTkButton(master = frame_eleccion_vuelo,
                         width=285,
@@ -275,7 +278,8 @@ diamante_clase = ctk.CTkButton(master = frame_eleccion_vuelo,
                         fg_color="beige",
                         hover_color= "beige",
                         border_width=2,
-                        corner_radius=32)
+                        corner_radius=32
+                        )
 
 premium_clase = ctk.CTkButton(master = frame_eleccion_vuelo,
                         width=285,
@@ -283,7 +287,8 @@ premium_clase = ctk.CTkButton(master = frame_eleccion_vuelo,
                         fg_color="beige",
                         hover_color= "beige",
                         border_width=2,
-                        corner_radius=32)
+                        corner_radius=32
+                        )
 
 seleccionar_plata = ctk.CTkButton(master = plata_clase,
                         width=230,
@@ -294,7 +299,8 @@ seleccionar_plata = ctk.CTkButton(master = plata_clase,
                         border_width=2,
                         corner_radius=36,
                         text_color="black",
-                        text="Seleccionar")
+                        text="Seleccionar"
+                        )
 
 seleccionar_diamante = ctk.CTkButton(master = diamante_clase,
                         width=230,
@@ -305,7 +311,8 @@ seleccionar_diamante = ctk.CTkButton(master = diamante_clase,
                         border_width=2,
                         corner_radius=36,
                         text_color="black",
-                        text="Seleccionar")
+                        text="Seleccionar"
+                        )
 
 seleccionar_premium = ctk.CTkButton(master = premium_clase,
                         width=230,
@@ -316,7 +323,8 @@ seleccionar_premium = ctk.CTkButton(master = premium_clase,
                         border_width=2,                    
                         corner_radius=36,
                         text_color="black",
-                        text="Seleccionar")
+                        text="Seleccionar"
+                        )
 
 cerrar_ventana = ctk.CTkButton(master = frame_eleccion_vuelo,
                         width=230,
@@ -341,7 +349,7 @@ text_viaje = ctk.CTkLabel(master = frame_principal,
                         text_color = "black", 
                         font = font_1, 
                         corner_radius = 10, 
-                        bg_color = "light pink",
+                        bg_color = "#d7bb9f",
                         )
 
 text_hora_salida = ctk.CTkLabel(master = opcion1, 
