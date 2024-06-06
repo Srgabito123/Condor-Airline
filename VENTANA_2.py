@@ -8,20 +8,21 @@ def buscar():
 
 #--------------------------------VENTANA 2---------------------------------------
 
-ventana2 = ctk.CTk()
-ventana2.resizable(0, 0)
+root2 = ctk.CTk()
+root2.resizable(0, 0)
 
-screen_width = ventana2.winfo_screenwidth()
-screen_height = ventana2.winfo_screenheight()
+screen_width = root2.winfo_screenwidth()
+screen_height = root2.winfo_screenheight()
 window_width = 1000
 window_height = 600
 
 center_x = int(screen_width / 2 - window_width / 2)
 center_y = int(screen_height / 2 - window_height / 2)
 
-ventana2.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
-ventana2.config(background="#d7bb9f")
-ventana2.title("Mapaula airline")
+root2.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
+root2.config(background="#d7bb9f")
+root2.title("Mapaula airline")
+root2.iconbitmap("images/ICONO.ico")
 
 #-------------------------VARIBLES OPTION MENUS----------------------------------
 
@@ -49,7 +50,7 @@ valor_fechas.set(fechas_ida[0])
 
 #----------------------------------FRAMES----------------------------------------
 
-frame_1 = ctk.CTkFrame(ventana2,
+frame_1 = ctk.CTkFrame(root2,
                       bg_color="#d7bb9f", 
                       fg_color = "#d7bb9f", 
                       width = 860, 
@@ -59,7 +60,7 @@ frame_1 = ctk.CTkFrame(ventana2,
                       corner_radius = 15
                       )
 
-roundtrip_frame = ctk.CTkFrame(ventana2, 
+roundtrip_frame = ctk.CTkFrame(root2, 
                       fg_color = "#d7bb9f",
                       bg_color = "#d7bb9f", 
                       width = 257, 
@@ -69,7 +70,7 @@ roundtrip_frame = ctk.CTkFrame(ventana2,
                       corner_radius = 3
                       )
 
-amountpeople_frame = ctk.CTkFrame(ventana2, 
+amountpeople_frame = ctk.CTkFrame(root2, 
                       fg_color = "#d7bb9f",
                       bg_color = "#d7bb9f", 
                       width = 77, 
@@ -79,7 +80,7 @@ amountpeople_frame = ctk.CTkFrame(ventana2,
                       corner_radius = 3
                       )
 
-origin_frame = ctk.CTkFrame(ventana2, 
+origin_frame = ctk.CTkFrame(root2, 
                       fg_color = "#d7bb9f",
                       bg_color = "#d7bb9f", 
                       width = 226, 
@@ -89,7 +90,7 @@ origin_frame = ctk.CTkFrame(ventana2,
                       corner_radius = 3
                       )
 
-destination_frame = ctk.CTkFrame(ventana2, 
+destination_frame = ctk.CTkFrame(root2, 
                       fg_color = "#d7bb9f",
                       bg_color = "#d7bb9f", 
                       width = 226, 
@@ -99,7 +100,7 @@ destination_frame = ctk.CTkFrame(ventana2,
                       corner_radius = 0
                       )
 
-dateflight_frame = ctk.CTkFrame(ventana2, 
+dateflight_frame = ctk.CTkFrame(root2, 
                       fg_color = "#d7bb9f",
                       bg_color = "#d7bb9f", 
                       width = 226, 
@@ -109,7 +110,7 @@ dateflight_frame = ctk.CTkFrame(ventana2,
                       corner_radius = 0
                       )
 
-image_frame = ctk.CTkFrame(ventana2, 
+image_frame = ctk.CTkFrame(root2, 
                            fg_color="beige",
                            bg_color="#d7bb9f", 
                            corner_radius = 2,
@@ -117,7 +118,7 @@ image_frame = ctk.CTkFrame(ventana2,
                            border_color = "beige"
                            )
 
-linea_divisora = ctk.CTkFrame(ventana2, 
+linea_divisora = ctk.CTkFrame(root2, 
                       fg_color = "#d7bb9f", 
                       width = 860, 
                       height = 12,
@@ -134,7 +135,7 @@ icon_photo = ImageTk.PhotoImage(icon_image)
 
 #----------------------------------OPTION MENUS----------------------------------------
 
-roundtrip_optionmenu = ctk.CTkOptionMenu(ventana2, 
+roundtrip_optionmenu = ctk.CTkOptionMenu(root2, 
                                         variable = valor_idavuelta, 
                                         values = opciones_ida_vuelta,
                                         width = 250,
@@ -153,7 +154,7 @@ roundtrip_optionmenu = ctk.CTkOptionMenu(ventana2,
                                         corner_radius = 2
                                         )
 
-origin_optionmenu = ctk.CTkOptionMenu(ventana2, 
+origin_optionmenu = ctk.CTkOptionMenu(root2, 
                                         variable = valor_origen, 
                                         values = ciudades_origen,
                                         width = 220,
@@ -172,7 +173,7 @@ origin_optionmenu = ctk.CTkOptionMenu(ventana2,
                                         corner_radius = 2
                                         )
 
-destination_optionmenu = ctk.CTkOptionMenu(ventana2, 
+destination_optionmenu = ctk.CTkOptionMenu(root2, 
                                         variable = valor_destino, 
                                         values = ciudades_destino,
                                         width = 220,
@@ -191,7 +192,7 @@ destination_optionmenu = ctk.CTkOptionMenu(ventana2,
                                         corner_radius = 2
                                         )
 
-dateflight_optionmenu = ctk.CTkOptionMenu(ventana2, 
+dateflight_optionmenu = ctk.CTkOptionMenu(root2, 
                                         variable = valor_fechas, 
                                         values = fechas_ida,
                                         width = 220,
@@ -229,7 +230,7 @@ icon_people_label = ctk.CTkLabel(image_frame,
                                    height = 30
                                    )
 
-origin_label = ctk.CTkLabel(ventana2, 
+origin_label = ctk.CTkLabel(root2, 
                             text = "Origen",
                             width = 220,
                             height = 16,
@@ -240,7 +241,7 @@ origin_label = ctk.CTkLabel(ventana2,
                             anchor = "w"
                             )
 
-destination_label = ctk.CTkLabel(ventana2, 
+destination_label = ctk.CTkLabel(root2, 
                             text = "Destino",
                             width = 220,
                             height = 16,
@@ -251,7 +252,7 @@ destination_label = ctk.CTkLabel(ventana2,
                             anchor = "w"
                             )
 
-dateflight_label = ctk.CTkLabel(ventana2, 
+dateflight_label = ctk.CTkLabel(root2, 
                             text = "Fecha ida",
                             width = 220,
                             height = 16,
@@ -264,7 +265,7 @@ dateflight_label = ctk.CTkLabel(ventana2,
 
 #------------------------------------BOTON----------------------------------------
 
-boton_buscar = ctk.CTkButton(ventana2, 
+boton_buscar = ctk.CTkButton(root2, 
                       text="Buscar",
                       text_color="white", 
                       width=150, 
@@ -297,4 +298,4 @@ dateflight_optionmenu.place(x = 650, y = 260)
 dateflight_label.place(x = 650, y = 244)
 boton_buscar.place(x=425, y=370)
 
-ventana2.mainloop()
+root2.mainloop()

@@ -14,24 +14,25 @@ def is_seat_selected(row, col):
 
 #--------------------------------------VENTANA3----------------------------------------
 
-ventana3 = ctk.CTk()
-ventana3.resizable(0, 0)
+root3 = ctk.CTk()
+root3.resizable(0, 0)
 
-screen_width = ventana3.winfo_screenwidth()
-screen_height = ventana3.winfo_screenheight()
+screen_width = root3.winfo_screenwidth()
+screen_height = root3.winfo_screenheight()
 window_width = 1000
 window_height = 600
 
 center_x = int(screen_width / 2 - window_width / 2)
 center_y = int(screen_height / 2 - window_height / 2)
 
-ventana3.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
-ventana3.config(background="#d7bb9f")
-ventana3.title("Mapaula airline")
+root3.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
+root3.config(background="#d7bb9f")
+root3.title("Mapaula airline")
+root3.iconbitmap("images/ICONO.ico")
 
 #---------------------------------------FRAMES-----------------------------------------
 
-outside_line = ctk.CTkFrame(ventana3, 
+outside_line = ctk.CTkFrame(root3, 
                             width=860, 
                             height=515,
                             bg_color="#d7bb9f",
@@ -41,7 +42,7 @@ outside_line = ctk.CTkFrame(ventana3,
                             border_width=4
                             )
 
-text_frame = ctk.CTkFrame(ventana3, 
+text_frame = ctk.CTkFrame(root3, 
                            width=230, 
                            height=40,
                            bg_color="#d7bb9f",
@@ -49,7 +50,7 @@ text_frame = ctk.CTkFrame(ventana3,
                            corner_radius=25
                            )
 
-seatsbutton_frame = ctk.CTkFrame(ventana3,
+seatsbutton_frame = ctk.CTkFrame(root3,
                             width=320, 
                             height=420,
                             bg_color="#d7bb9f",
@@ -84,7 +85,7 @@ aluminio_zone_frame = ctk.CTkFrame(seatsbutton_frame,
 
 #---------------------------------------LABELS---------------------------------------
 
-letter_seats_text = ctk.CTkLabel(ventana3, 
+letter_seats_text = ctk.CTkLabel(root3, 
                             text=" A         B          C          D          E          F  ", 
                             font=("Poppins", 16),
                             text_color="brown",
@@ -105,7 +106,7 @@ seats_text = ctk.CTkLabel(text_frame,
 
 #---------------------------------------BOTONES---------------------------------------
 
-premium_button = ctk.CTkButton(ventana3, 
+premium_button = ctk.CTkButton(root3, 
                                 text="Premium",
                                 text_color="white", 
                                 width=150, 
@@ -120,7 +121,7 @@ premium_button = ctk.CTkButton(ventana3,
                                 )
 
 
-diamante_button = ctk.CTkButton(ventana3, 
+diamante_button = ctk.CTkButton(root3, 
                                 text="Diamante",
                                 text_color="white", 
                                 width=150, 
@@ -134,7 +135,7 @@ diamante_button = ctk.CTkButton(ventana3,
                                 border_width=3
                                 )
 
-aluminio_button = ctk.CTkButton(ventana3, 
+aluminio_button = ctk.CTkButton(root3, 
                                 text="Aluminio",
                                 text_color="white", 
                                 width=150, 
@@ -148,7 +149,7 @@ aluminio_button = ctk.CTkButton(ventana3,
                                 border_width=3
                                 )
 
-select_button = ctk.CTkButton(ventana3, 
+select_button = ctk.CTkButton(root3, 
                                 text="Seleccionar",
                                 text_color="white", 
                                 width=150, 
@@ -221,5 +222,5 @@ diamante_button.place(x=635, y=260)
 aluminio_button.place(x=635, y=408)
 select_button.place(x=790, y=515)
 
-ventana3.mainloop()
+root3.mainloop()
 

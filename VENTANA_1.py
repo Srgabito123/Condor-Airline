@@ -8,17 +8,21 @@ def check_in():
     
 #-------------------------------VENTANA 1------------------------------------------
 
-ventana1 = ctk.CTk()
-ventana1.resizable(0, 0)
-screen_width = ventana1.winfo_screenwidth()
-screen_height = ventana1.winfo_screenheight()
+root1 = ctk.CTk()
+root1.resizable(0, 0)
+
+screen_width = root1.winfo_screenwidth()
+screen_height = root1.winfo_screenheight()
 window_width = 1000
 window_height = 600
+
 center_x = int(screen_width / 2 - window_width / 2)
 center_y = int(screen_height / 2 - window_height / 2)
-ventana1.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
-ventana1.config(background="#d7bb9f")
-ventana1.title("Mapaula airline")
+
+root1.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
+root1.config(background="#d7bb9f")
+root1.title("Mapaula airline")
+root1.iconbitmap("images/ICONO.ico")
 
 #----------------------------------------FONTS-------------------------------------
 
@@ -27,12 +31,12 @@ font_2 = ctk.CTkFont(family="Cooper Black", size=12)
 
 #-------------------------------------IMÁGEN--------------------------------------
 
-image_1 = ctk.CTkImage(light_image=Image.open("D:/GABO/2024/UNIVERSIDAD/SEMESTRE 1/FUNDAMENTOS DE PROGRAMACIÓN IMPERATIVA/PROYECTO FINAL/Repositorio/LOGO AEROLINEA.png"),
-                       dark_image=Image.open("D:/GABO/2024/UNIVERSIDAD/SEMESTRE 1/FUNDAMENTOS DE PROGRAMACIÓN IMPERATIVA/PROYECTO FINAL/Repositorio/LOGO AEROLINEA.png"),
+image_1 = ctk.CTkImage(light_image=Image.open("images/LOGO AEROLINEA.png"),
+                       dark_image=Image.open("images/LOGO AEROLINEA.png"),
                        size = (340, 340)
                        )
 
-image1_label = ctk.CTkLabel(ventana1, 
+image1_label = ctk.CTkLabel(root1, 
                             image=image_1, 
                             text = "", 
                             bg_color="#d7bb9f"
@@ -40,7 +44,7 @@ image1_label = ctk.CTkLabel(ventana1,
 
 #------------------------------------TÍTULOS----------------------------------------
 
-title_1 = ctk.CTkLabel(ventana1, 
+title_1 = ctk.CTkLabel(root1, 
                        text="Código", 
                        width=150, 
                        height=40, 
@@ -51,7 +55,7 @@ title_1 = ctk.CTkLabel(ventana1,
                        corner_radius=10
                        )
 
-title_2 = ctk.CTkLabel(ventana1, 
+title_2 = ctk.CTkLabel(root1, 
                        text="Apellido", 
                        width=150, 
                        height=40, 
@@ -64,7 +68,7 @@ title_2 = ctk.CTkLabel(ventana1,
 
 #------------------------------------CAJAS DE TEXTO----------------------------------------
 
-text_box_1 = ctk.CTkEntry(ventana1, 
+text_box_1 = ctk.CTkEntry(root1, 
                         width=250, 
                         height=50, 
                         bg_color="#d7bb9f", 
@@ -74,7 +78,7 @@ text_box_1 = ctk.CTkEntry(ventana1,
                         border_color="#a06553"
                         )
 
-text_box_2 = ctk.CTkEntry(ventana1, 
+text_box_2 = ctk.CTkEntry(root1, 
                         width=250, 
                         height=50,
                         font = font_1, 
@@ -86,7 +90,7 @@ text_box_2 = ctk.CTkEntry(ventana1,
 
 #------------------------------------BOTON----------------------------------------
 
-button_1 = ctk.CTkButton(ventana1, 
+button_1 = ctk.CTkButton(root1, 
                         text="Realizar Check-In",
                         text_color="white", 
                         width=200, 
@@ -111,4 +115,4 @@ text_box_1.place(x=200, y=350)
 text_box_2.place(x=550, y=350)
 button_1.place(x=400, y=440)
 
-ventana1.mainloop()
+root1.mainloop()
