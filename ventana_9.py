@@ -12,6 +12,8 @@ root.iconbitmap("logo.ico")
 #---------------------------FONTS---------------------------
 
 font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
+font_2 = ctk.CTkFont(family="Cooper Black", size=12)
+
 
 #---------------------------FRAMES---------------------------
 

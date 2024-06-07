@@ -7,7 +7,7 @@ root._set_appearance_mode("light")
 root.geometry("1000x600")
 root.resizable(0, 0)
 root.config(bg = "light pink")
-root.iconbitmap("logo.ico")
+# root.iconbitmap("logo.ico")
 
 #-------------------------fonts-------------------------
 font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
