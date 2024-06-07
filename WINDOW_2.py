@@ -1,12 +1,9 @@
 import customtkinter as ctk
 from PIL import Image, ImageTk
+from tkinter import messagebox as mb
+import CONSTANTES
 
-def switch_to_root2():
-
-    #--------------------------------FUNCIONES---------------------------------------
-
-    def buscar():
-        pass
+def initialize_root2():
 
     #--------------------------------VENTANA 2---------------------------------------
 
@@ -25,30 +22,31 @@ def switch_to_root2():
     root2.config(background="#d7bb9f")
     root2.title("CONDOR-AIRLINES")
     root2.iconbitmap("images/ICONO.ico")
-
+    
     #-------------------------VARIBLES OPTION MENUS----------------------------------
 
-    roundtrip_options = ["Solo ida", "Ida y vuelta"] #Valores
+    roundtrip_options = ["Solo ida"] #Valores
     roundtrip_value = ctk.StringVar() #Tipo de variable
     roundtrip_value.set(roundtrip_options[0]) #Valor por defecto
 
-    origin_city = ["Bogotá (BOG)", "Medellin (MDE)", "Santa Marta (SMR)", "Cali (CLO)", "Cartagena (CTG)"] 
-    valor_origen = ctk.StringVar() 
-    valor_origen.set(origin_city[0]) 
-
-    ciudades_destino = ["Bogotá (BOG)", "Medellin (MDE)", "Santa Marta (SMR)", "Cali (CLO)", "Cartagena (CTG)"] 
-    valor_destino = ctk.StringVar() 
-
-    departure_dates = ["5/06/2024", 
-                      "6/06/2024", 
-                      "12/06/2024", 
-                      "13/06/2024", 
-                      "19/06/2024", 
-                      "20/06/2024", 
-                      "26/06/2024", 
-                      "27/06/2024"]
+    origin_value = ctk.StringVar() 
+    destiny_value = ctk.StringVar() 
     dates_value = ctk.StringVar() 
-    dates_value.set(departure_dates[0])
+
+    #--------------------------------FUNCIONES---------------------------------------
+
+    def switch_to_root4_5():
+
+        if origin_value.get() == destiny_value.get():
+            mb.showwarning("Error", "El origen y el destino no pueden ser iguales")
+            return
+        else:
+            root2.destroy()
+            import WINDOW_4_5
+            WINDOW_4_5.initialize_root4_5(origin_value.get(),
+                                            destiny_value.get(),
+                                            dates_value.get())
+
 
     #----------------------------------FRAMES----------------------------------------
 
@@ -157,8 +155,8 @@ def switch_to_root2():
                                             )
 
     origin_optionmenu = ctk.CTkOptionMenu(root2, 
-                                            variable = valor_origen, 
-                                            values = origin_city,
+                                            variable = origin_value, 
+                                            values = CONSTANTES.origin_city,
                                             width = 220,
                                             height=50,
                                             font=("Poppins", 16),
@@ -176,8 +174,8 @@ def switch_to_root2():
                                             )
 
     destination_optionmenu = ctk.CTkOptionMenu(root2, 
-                                            variable = valor_destino, 
-                                            values = ciudades_destino,
+                                            variable = destiny_value, 
+                                            values = CONSTANTES.destiny_city,
                                             width = 220,
                                             height=50,
                                             font=("Poppins", 16),
@@ -196,7 +194,7 @@ def switch_to_root2():
 
     dateflight_optionmenu = ctk.CTkOptionMenu(root2, 
                                             variable = dates_value, 
-                                            values = departure_dates,
+                                            values = CONSTANTES.departure_date,
                                             width = 220,
                                             height=50,
                                             font=("Poppins", 16),
@@ -277,7 +275,7 @@ def switch_to_root2():
                         fg_color="#a06553",
                         cursor="hand2",
                         hover_color="lightblue",
-                        command = buscar)
+                        command = switch_to_root4_5)
 
     #----------------------------------POSICIONAMIENTO----------------------------------------
 
@@ -301,3 +299,6 @@ def switch_to_root2():
     button_search.place(x=425, y=370)
 
     root2.mainloop()
+
+if __name__ == "__main__":
+    initialize_root2()
