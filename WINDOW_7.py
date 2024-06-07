@@ -8,6 +8,13 @@ root7.geometry("1000x600")
 root7.resizable(0, 0)
 root7.config(bg = "#d7bb9f")
 root7.iconbitmap("images/ICONO.ico")
+root = ctk.CTk()
+root.title("CONDOR")
+root._set_appearance_mode("light")
+root.geometry("1000x600")
+root.resizable(0, 0)
+root.config(bg = "light pink")
+# root.iconbitmap("logo.ico")
 
 #----------------------------VARIABLES OPTIPON MENUS-------------------------------
 
