@@ -1,10 +1,14 @@
 import customtkinter as ctk
 from PIL import Image
+
 #------------------------------FUNCTIONS------------------------------------------
 
 def check_in():
     text_box_1.delete(0, ctk.END)
     text_box_2.delete(0, ctk.END)
+    root1.destroy()
+    import VENTANA_2
+    VENTANA_2.switch_to_root2()
     
 #-------------------------------VENTANA 1------------------------------------------
 
@@ -21,7 +25,7 @@ center_y = int(screen_height / 2 - window_height / 2)
 
 root1.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
 root1.config(background="#d7bb9f")
-root1.title("Mapaula airline")
+root1.title("CONDOR-AIRLINES")
 root1.iconbitmap("images/ICONO.ico")
 
 #----------------------------------------FONTS-------------------------------------

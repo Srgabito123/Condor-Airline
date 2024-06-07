@@ -2,12 +2,12 @@ from tkinter import *
 import customtkinter as ctk
 
 root4_5 = ctk.CTk()
-root4_5.title("CONDOR")
+root4_5.title("CONDOR-AIRLINES")
 root4_5._set_appearance_mode("light")
 root4_5.geometry("1000x600")
 root4_5.resizable(0, 0)
 root4_5.config(bg = "#d7bb9f")
-#root.iconbitmap("logo.ico")
+root4_5.iconbitmap("images/ICONO.ico")
 
 #---------------------------FUNCTIONS---------------------------
 

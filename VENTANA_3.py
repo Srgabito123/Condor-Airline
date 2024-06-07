@@ -27,7 +27,7 @@ center_y = int(screen_height / 2 - window_height / 2)
 
 root3.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
 root3.config(background="#d7bb9f")
-root3.title("Mapaula airline")
+root3.title("CONDOR-AIRLINES")
 root3.iconbitmap("images/ICONO.ico")
 
 #---------------------------------------FRAMES-----------------------------------------
@@ -83,6 +83,36 @@ aluminio_zone_frame = ctk.CTkFrame(seatsbutton_frame,
                               corner_radius=4
                               )
 
+premium_frame = ctk.CTkFrame(root3, 
+                            width=150, 
+                            height=40,
+                            bg_color="#d7bb9f",
+                            fg_color="#ddbdb2",
+                            corner_radius=5,
+                            border_color="#b38371",
+                            border_width=3
+                            )
+
+diamante_frame = ctk.CTkFrame(root3, 
+                            width=150, 
+                            height=40,
+                            bg_color="#d7bb9f",
+                            fg_color="#d2a798",
+                            corner_radius=5,
+                            border_color="#b38371",
+                            border_width=3
+                            )
+
+aluminio_frame = ctk.CTkFrame(root3, 
+                            width=150, 
+                            height=40,
+                            bg_color="#d7bb9f",
+                            fg_color="#c7917e",
+                            corner_radius=5,
+                            border_color="#b38371",
+                            border_width=3
+                            )
+
 #---------------------------------------LABELS---------------------------------------
 
 letter_seats_text = ctk.CTkLabel(root3, 
@@ -104,50 +134,34 @@ seats_text = ctk.CTkLabel(text_frame,
                               corner_radius=15
                               )
 
+premium_label = ctk.CTkLabel(premium_frame, 
+                            text="Premium", 
+                            font=("Poppins", 16, "bold"),
+                            text_color="white",
+                            bg_color="#d7bb9f",
+                            fg_color="#ddbdb2",
+                            corner_radius=5
+                            )
+
+diamante_label = ctk.CTkLabel(diamante_frame, 
+                            text="Diamante", 
+                            font=("Poppins", 16, "bold"),
+                            text_color="white",
+                            bg_color="#d7bb9f",
+                            fg_color="#d2a798",
+                            corner_radius=5
+                            )
+
+aluminio_label = ctk.CTkLabel(aluminio_frame, 
+                            text="Aluminio", 
+                            font=("Poppins", 16, "bold"),
+                            text_color="white",
+                            bg_color="#d7bb9f",
+                            fg_color="#c7917e",
+                            corner_radius=5
+                            )
+
 #---------------------------------------BOTONES---------------------------------------
-
-premium_button = ctk.CTkButton(root3, 
-                                text="Premium",
-                                text_color="white", 
-                                width=150, 
-                                height=40,
-                                font=("Poppins", 16, "bold"),
-                                bg_color="#d7bb9f",
-                                fg_color="#ddbdb2",
-                                cursor="hand2",
-                                hover_color="beige",
-                                border_color="#b38371",
-                                border_width=3
-                                )
-
-
-diamante_button = ctk.CTkButton(root3, 
-                                text="Diamante",
-                                text_color="white", 
-                                width=150, 
-                                height=40,
-                                font=("Poppins", 16, "bold"),
-                                bg_color="#d7bb9f",
-                                fg_color="#d2a798",
-                                cursor="hand2",
-                                hover_color="beige",
-                                border_color="#b38371",
-                                border_width=3
-                                )
-
-aluminio_button = ctk.CTkButton(root3, 
-                                text="Aluminio",
-                                text_color="white", 
-                                width=150, 
-                                height=40,
-                                font=("Poppins", 16, "bold"),
-                                bg_color="#d7bb9f",
-                                fg_color="#c7917e",
-                                cursor="hand2",
-                                hover_color="beige",
-                                border_color="#b38371",
-                                border_width=3
-                                )
 
 select_button = ctk.CTkButton(root3, 
                                 text="Seleccionar",
@@ -160,7 +174,7 @@ select_button = ctk.CTkButton(root3,
                                 cursor="hand2",
                                 border_width=3,
                                 border_color="beige",
-                                hover_color="beige"
+                                hover_color="lightblue"
                                 )
 
 seat_buttons = []
@@ -217,9 +231,12 @@ seatsbutton_frame.place(x=290, y = 80)
 premium_zone_frame.grid(row= 0, column = 0, padx = 10, pady = 10)
 diamond_zone_frame.grid(row = 1, column = 0)
 aluminio_zone_frame.grid(row = 2, column = 0, padx = 10, pady = 10)
-premium_button.place(x=635, y=122)
-diamante_button.place(x=635, y=260)
-aluminio_button.place(x=635, y=408)
+premium_frame.place(x=635, y=142)
+diamante_frame.place(x=635, y=280)
+aluminio_frame.place(x=635, y=428)
+premium_label.pack(fill="both", expand=True, pady=5, padx=5)
+diamante_label.pack(fill="both", expand=True, pady=5, padx=5)
+aluminio_label.pack(fill="both", expand=True, pady=5, padx=5)
 select_button.place(x=790, y=515)
 
 root3.mainloop()
