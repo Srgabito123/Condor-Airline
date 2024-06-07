@@ -14,13 +14,19 @@ for line in file:
 
 #print(tb.tabulate(matriz))
 
-def recive_data(origin, destiny, date):
-    global flights
-    flights = []
 
+def recive_data(origin, destiny, date):
+    global flights, departure_hour, arrival_hour, price
+    flights = []
     for i in range(len(matriz)):
         if matriz[i][7] == origin and matriz[i][8] == destiny and matriz[i][1] == date:
                 flights.append(matriz[i])
+    departure_hour = [flights[i][2] for i in range(len(flights))]
+    arrival_hour = [flights[i][3] for i in range(len(flights))]
+    price = [flights[i][4] for i in range(len(flights))]
+
+    print(departure_hour)
+    print(arrival_hour)
 
 
 
@@ -30,6 +36,9 @@ def recive_data(origin, destiny, date):
 origin_city = set(matriz[i][7] for i in range(1, len(matriz)))
 destiny_city = set(matriz[i][8] for i in range(1, len(matriz)))
 departure_date = set(matriz[i][1] for i in range(1, len(matriz)))
+
+
+
 
 origin_city = list(origin_city)
 destiny_city = list(destiny_city)

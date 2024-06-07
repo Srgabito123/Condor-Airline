@@ -41,7 +41,7 @@ def initialize_root2():
                                     destiny_value.get(),
                                     dates_value.get())
 
-        if origin_value.get() == "" or destiny_value.get() == "" or dates_value.get() == "" or amountpeople_value.get() == "":
+        if origin_value.get() == "" or destiny_value.get() == "" or dates_value.get() == "" or amountpeople_value.get() == 0:
             mb.showwarning("Error", "Por favor, llene todos los campos")
             return
         if origin_value.get() == destiny_value.get():
