@@ -3,8 +3,6 @@ import customtkinter as ctk
 
 def initialize_root4_5(origin_city, destiny_city, departure_date):
 
-    print(origin_city, destiny_city, departure_date)
-
     root4_5 = ctk.CTk()
     root4_5.title("CONDOR-AIRLINES")
     root4_5._set_appearance_mode("light")
@@ -25,13 +23,14 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
         frame_eleccion_vuelo.place_forget()
 
     #---------------------------VARIABLES---------------------------
+
     hora_llegada = "13:00"
     hora_salida = "10:00"
-    lugar_salida = "Bogotá"
-    lugar_llegada = "Cartagena"
+    lugar_salida = origin_city
+    lugar_llegada = destiny_city
     ida = f"Ida: {lugar_salida} - {lugar_llegada}"
     precio = "2.000.000"
-    fecha = "2024-06-13"
+    fecha = departure_date
     flechita = "-------------------------------------->"
     plata = """
     1 artículo personal (bolso) 
@@ -123,6 +122,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                             )
 
     #---------------------------BOTONES---------------------------
+
+    
 
     opcion1 = ctk.CTkButton(master = frame_vuelos,    
                             width = 890, 

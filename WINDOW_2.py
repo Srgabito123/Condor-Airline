@@ -4,7 +4,6 @@ from tkinter import messagebox as mb
 import CONSTANTES
 
 def initialize_root2():
-
     #--------------------------------VENTANA 2---------------------------------------
 
     root2 = ctk.CTk()
@@ -37,6 +36,10 @@ def initialize_root2():
     #--------------------------------FUNCIONES---------------------------------------
 
     def switch_to_root4_5():
+        import CONSTANTES
+        CONSTANTES.recive_data(origin_value.get(),
+                                    destiny_value.get(),
+                                    dates_value.get())
 
         if origin_value.get() == "" or destiny_value.get() == "" or dates_value.get() == "" or amountpeople_value.get() == "":
             mb.showwarning("Error", "Por favor, llene todos los campos")
@@ -44,13 +47,15 @@ def initialize_root2():
         if origin_value.get() == destiny_value.get():
             mb.showwarning("Error", "El origen y el destino no pueden ser iguales")
             return
+        if CONSTANTES.flights == []:
+            mb.showwarning("Error", "No hay vuelos disponibles")
+            return
         else:
             root2.destroy()
-            import WINDOW_4_5
+            import WINDOW_4_5          
             WINDOW_4_5.initialize_root4_5(origin_value.get(),
                                             destiny_value.get(),
                                             dates_value.get())
-
 
     #----------------------------------FRAMES----------------------------------------
 

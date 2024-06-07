@@ -1,4 +1,5 @@
 import tabulate as tb
+import WINDOW_2
 
 #--------------------------------------SACAR DATOS DEL TXT------------------------------------
 file = open("Datos_Vuelos _Finales.txt", 'r')
@@ -12,6 +13,18 @@ for line in file:
     matriz.append(lista)
 
 #print(tb.tabulate(matriz))
+
+def recive_data(origin, destiny, date):
+    global flights
+    flights = []
+
+    for i in range(len(matriz)):
+        if matriz[i][7] == origin and matriz[i][8] == destiny and matriz[i][1] == date:
+                flights.append(matriz[i])
+
+
+
+       
 #--------------------------------------VARIABLES------------------------------------
 
 origin_city = set(matriz[i][7] for i in range(1, len(matriz)))
@@ -23,3 +36,5 @@ destiny_city = list(destiny_city)
 departure_date = list(departure_date)
 
 file.close()
+
+
