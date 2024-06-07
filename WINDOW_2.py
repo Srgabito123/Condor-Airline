@@ -32,11 +32,15 @@ def initialize_root2():
     origin_value = ctk.StringVar() 
     destiny_value = ctk.StringVar() 
     dates_value = ctk.StringVar() 
+    amountpeople_value = ctk.IntVar()
 
     #--------------------------------FUNCIONES---------------------------------------
 
     def switch_to_root4_5():
 
+        if origin_value.get() == "" or destiny_value.get() == "" or dates_value.get() == "" or amountpeople_value.get() == "":
+            mb.showwarning("Error", "Por favor, llene todos los campos")
+            return
         if origin_value.get() == destiny_value.get():
             mb.showwarning("Error", "El origen y el destino no pueden ser iguales")
             return
@@ -73,7 +77,7 @@ def initialize_root2():
     amountpeople_frame = ctk.CTkFrame(root2, 
                         fg_color = "#d7bb9f",
                         bg_color = "#d7bb9f", 
-                        width = 77, 
+                        width = 103, 
                         height = 56, 
                         border_color = "#a06553", 
                         border_width = 3,
@@ -211,15 +215,24 @@ def initialize_root2():
                                             corner_radius = 2
                                             )
 
-    #--------------------------------------CAJAS DE TEXTO----------------------------------------
-
-    amountpeople_textbox = ctk.CTkEntry(image_frame, 
-                        width = 40,  
-                        height = 50,  
-                        fg_color="beige", 
-                        border_width=0, 
-                        font=("Poppins", 14, "bold")
-                        )
+    amountpeople_optionmenu = ctk.CTkOptionMenu(image_frame, 
+                                            variable = amountpeople_value, 
+                                            values = ["1"],
+                                            width = 10,
+                                            height=50,
+                                            font=("Poppins", 16),
+                                            text_color = "brown",
+                                            bg_color = "beige",
+                                            fg_color = "beige",
+                                            cursor = "hand2",
+                                            button_color = "beige",
+                                            button_hover_color = "#a06553",
+                                            dropdown_font = ("Poppins", 16),
+                                            dropdown_text_color = "brown",
+                                            dropdown_hover_color = "#a06553",
+                                            dropdown_fg_color = "beige",
+                                            corner_radius = 2
+                                            )
 
     #-----------------------------------LABELS----------------------------------------
 
@@ -281,14 +294,14 @@ def initialize_root2():
 
     frame_1.place(x = 70, y = 70)
     roundtrip_frame.place(x = 97, y = 105)
-    amountpeople_frame.place(x = 797, y = 104.8)
+    amountpeople_frame.place(x = 777, y = 104.8)
     origin_frame.place(x = 97, y = 241)
     destination_frame.place(x = 320, y = 241)
     dateflight_frame.place(x = 647, y = 241)
     divisor_line.place(x = 70, y = 190)
     roundtrip_optionmenu.place(x = 100, y = 108)
-    image_frame.place(x = 800, y = 108)
-    amountpeople_textbox.grid(row=0, column=1, sticky="nsew", padx=(0, 5))
+    image_frame.place(x = 780, y = 108)
+    amountpeople_optionmenu.grid(row=0, column=1, sticky="nsew", padx=(0, 5))
     icon_people_label.grid(row=0, column=0, sticky="nsew", padx=(5, 0))
     origin_label.place(x = 100, y = 244)
     destination_label.place(x = 323, y = 244)
