@@ -2,6 +2,7 @@ from tkinter import *
 import customtkinter as ctk
 import CONSTANTES
 
+    
 def initialize_root4_5(origin_city, destiny_city, departure_date):
 
     #--------------------------------VENTANA 4_5---------------------------------------
@@ -229,6 +230,105 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
         text_precio.place(relx = 0.83, rely = 0.53, anchor = "center")
         text_flechita.place(relx = 0.3, rely = 0.45, anchor = "center")
 
+
+
+        def replace_buttons(departure_city, arrival_city, date):
+            CONSTANTES.recive_data(departure_city, arrival_city, date)
+            for widget in flights_frame.winfo_children():
+                widget.destroy()
+            
+            for i in range(len(CONSTANTES.flights)):
+                opcion1 = ctk.CTkButton(master = flights_frame,    
+                                        width = 890, 
+                                        height = 160, 
+                                        corner_radius = 50,
+                                        fg_color = "beige",
+                                        hover_color = "beige",
+                                        text = " ",
+                                        border_color= "black",
+                                        border_width= 1.5,
+                                        command=eleccion_vuelo
+                                        )
+
+                departure_hour_text = ctk.CTkLabel(master = opcion1, 
+                                        text = CONSTANTES.departure_hour[i],
+                                        fg_color = "transparent",
+                                        bg_color= "beige",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.1,
+                                        height = 0.3
+                                        )
+
+                arrival_hour_text = ctk.CTkLabel(master = opcion1, 
+                                        text = CONSTANTES.arrival_hour[i],
+                                        fg_color = "beige",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.1,
+                                        height = 0.3,
+                                        corner_radius = 10,
+                                        )
+
+                departure_place_text = ctk.CTkLabel(master = opcion1, 
+                                        text = departure_city,
+                                        fg_color = "Beige",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.1,
+                                        height = 0.3,
+                                        corner_radius = 10,
+                                        )
+
+                arrival_place_text = ctk.CTkLabel(master = opcion1, 
+                                        text = arrival_city,
+                                        fg_color = "Beige",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.1,
+                                        height = 0.3,
+                                        corner_radius = 10,
+                                        )
+
+                text_desde = ctk.CTkLabel(master = opcion1,
+                                        text = """DESDE:
+
+                                            COP $""",
+                                        fg_color = "transparent",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.1,
+                                        height = 0.3,
+                                        corner_radius = 10,
+                                        )
+
+                text_precio = ctk.CTkLabel(master = opcion1,
+                                        text = CONSTANTES.price[i],
+                                        fg_color = "beige",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.1,
+                                        height = 0.3,
+                                        corner_radius = 10,
+                                        )
+
+                text_flechita = ctk.CTkLabel(master = opcion1,
+                                        text = flechita,
+                                        fg_color = "beige",
+                                        text_color = "black",
+                                        font = ("roboto", 20),
+                                        width = 0.3,
+                                        height = 0.3,
+                                        )
+                opcion1.pack(padx=5, pady=10, expand= True, anchor = "center")
+                departure_hour_text.place(relx = 0.1, rely = 0.4, anchor = "center")
+                departure_place_text.place(relx = 0.1, rely = 0.54, anchor = "center")
+                arrival_hour_text.place(relx = 0.5, rely = 0.4, anchor = "center")
+                arrival_place_text.place(relx = 0.5, rely = 0.54, anchor = "center")
+                text_desde.place(relx = 0.66, rely = 0.4, anchor = "center")
+                text_precio.place(relx = 0.83, rely = 0.53, anchor = "center")
+                text_flechita.place(relx = 0.3, rely = 0.45, anchor = "center")
+
     for i in range(len(CONSTANTES.all_dates)):
         boton_dias1 = ctk.CTkButton(master = date_buttons_frame,
                                 text = f"Fecha: {CONSTANTES.all_dates[i]}",
@@ -241,11 +341,12 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                 border_width= 1.5, 
                                 fg_color = "beige",  
                                 hover_color = "light blue",
+                                command=lambda i=i: replace_buttons(departure_city, arrival_city, CONSTANTES.all_dates[i])
                                 
                                 )
         boton_dias1.pack(side = LEFT, padx = 10)
 
-    mejor_precio_text = ctk.CTkButton(master = principal_frame,
+    price_filter_button = ctk.CTkButton(master = principal_frame,
                             text = "Mejor precio",
                             font = (font_1, 13),
                             text_color = "black",
@@ -255,7 +356,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                             border_color= "black",
                             border_width= 1.5,
                             fg_color = "beige",
-                            hover_color = "light blue"
+                            hover_color = "light blue",
                             )
 
     direct_flight = ctk.CTkButton(master = principal_frame, 
@@ -445,7 +546,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
     nombre_premium.place(relx=0.5, rely=0.05, anchor="center")
     texto_premium.place(relx=0.5, rely=0.45, anchor="center")
     close_window.place(relx=0.5, rely=0.93, anchor="center")  
-    mejor_precio_text.place(x = 686, y = 8, relwidth = 0.12, relheight = 0.05)
+    price_filter_button.place(x = 686, y = 8, relwidth = 0.12, relheight = 0.05)
     direct_flight.place(x = 825, y = 8, relwidth = 0.14, relheight = 0.05)
 
     date_buttons_frame.place(x = center_x - 20, y = 70)

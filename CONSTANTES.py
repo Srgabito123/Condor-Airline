@@ -43,8 +43,6 @@ def recive_data(origin, destiny, date):
     #print(tb.tabulate(flights))
 
 
-
-
        
 #--------------------------------------VARIABLES------------------------------------
 
