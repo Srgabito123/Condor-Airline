@@ -265,7 +265,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                         fg_color = "beige",
                                         text_color = "black",
                                         font = font_1,
-                                        width = 0.1,
+                                        width = 30,
                                         height = 0.3,
                                         corner_radius = 10,
                                         )
@@ -285,8 +285,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                         fg_color = "Beige",
                                         text_color = "black",
                                         font = font_1,
-                                        width = 0.1,
-                                        height = 0.3,
+                                        width = 30,
+                                        height = 3,
                                         corner_radius = 10,
                                         )
 
@@ -297,12 +297,12 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                         fg_color = "transparent",
                                         text_color = "black",
                                         font = font_1,
-                                        width = 0.1,
+                                        width = 0.08,
                                         height = 0.3,
                                         corner_radius = 10,
                                         )
 
-                text_precio = ctk.CTkLabel(master = opcion1,
+                price_text = ctk.CTkLabel(master = opcion1,
                                         text = CONSTANTES.price[i],
                                         fg_color = "beige",
                                         text_color = "black",
@@ -312,7 +312,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                         corner_radius = 10,
                                         )
 
-                text_flechita = ctk.CTkLabel(master = opcion1,
+                row_text = ctk.CTkLabel(master = opcion1,
                                         text = flechita,
                                         fg_color = "beige",
                                         text_color = "black",
@@ -325,9 +325,9 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                 departure_place_text.place(relx = 0.1, rely = 0.54, anchor = "center")
                 arrival_hour_text.place(relx = 0.5, rely = 0.4, anchor = "center")
                 arrival_place_text.place(relx = 0.5, rely = 0.54, anchor = "center")
-                text_desde.place(relx = 0.66, rely = 0.4, anchor = "center")
-                text_precio.place(relx = 0.83, rely = 0.53, anchor = "center")
-                text_flechita.place(relx = 0.3, rely = 0.45, anchor = "center")
+                text_desde.place(relx = 0.7, rely = 0.4, anchor = "center")
+                price_text.place(relx = 0.89, rely = 0.53, anchor = "center")
+                row_text.place(relx = 0.3, rely = 0.45, anchor = "center")
 
     for i in range(len(CONSTANTES.all_dates)):
         boton_dias1 = ctk.CTkButton(master = date_buttons_frame,

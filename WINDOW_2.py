@@ -48,7 +48,7 @@ def initialize_root2():
             mb.showwarning("Error", "El origen y el destino no pueden ser iguales")
             return
         if CONSTANTES.flights == []:
-            mb.showwarning("Error", "No hay vuelos disponibles")
+            mb.showwarning("Error", "No hay vuelos disponibles en esta fecha")
             return
         else:
             root2.destroy()
@@ -138,9 +138,9 @@ def initialize_root2():
 
     #--------------------------------------IMÁGEN----------------------------------------
 
-    icon_image = Image.open("D:/GABO/2024/UNIVERSIDAD/SEMESTRE 1/FUNDAMENTOS DE PROGRAMACIÓN IMPERATIVA/PROYECTO FINAL/Repositorio/PERSONAS.png")
-    icon_image = icon_image.resize((20, 20), Image.Resampling.LANCZOS)
-    icon_photo = ImageTk.PhotoImage(icon_image)
+    # icon_image = Image.open("D:/GABO/2024/UNIVERSIDAD/SEMESTRE 1/FUNDAMENTOS DE PROGRAMACIÓN IMPERATIVA/PROYECTO FINAL/Repositorio/PERSONAS.png")
+    # icon_image = icon_image.resize((20, 20), Image.Resampling.LANCZOS)
+    # icon_photo = ImageTk.PhotoImage(icon_image)
 
     #----------------------------------OPTION MENUS----------------------------------------
 
@@ -241,12 +241,12 @@ def initialize_root2():
 
     #-----------------------------------LABELS----------------------------------------
 
-    icon_people_label = ctk.CTkLabel(image_frame, 
-                                    image=icon_photo, 
-                                    text="", 
-                                    fg_color="beige",
-                                    height = 30
-                                    )
+    # icon_people_label = ctk.CTkLabel(image_frame, 
+    #                                 image=icon_photo, 
+    #                                 text="", 
+    #                                 fg_color="beige",
+    #                                 height = 30
+    #                                 )
 
     origin_label = ctk.CTkLabel(root2, 
                                 text = "Origen",
@@ -307,7 +307,7 @@ def initialize_root2():
     roundtrip_optionmenu.place(x = 100, y = 108)
     image_frame.place(x = 780, y = 108)
     amountpeople_optionmenu.grid(row=0, column=1, sticky="nsew", padx=(0, 5))
-    icon_people_label.grid(row=0, column=0, sticky="nsew", padx=(5, 0))
+    #icon_people_label.grid(row=0, column=0, sticky="nsew", padx=(5, 0))
     origin_label.place(x = 100, y = 244)
     destination_label.place(x = 323, y = 244)
     origin_optionmenu.place(x = 100, y = 260)
