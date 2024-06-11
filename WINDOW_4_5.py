@@ -452,7 +452,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                         fg_color = "beige",
                                         text_color = "black",
                                         font = font_1,
-                                        width = 0.1,
+                                        width = 30,
                                         height = 0.3,
                                         corner_radius = 10,
                                         )
@@ -484,7 +484,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                         fg_color = "transparent",
                                         text_color = "black",
                                         font = font_1,
-                                        width = 0.1,
+                                        width = 0.08,
                                         height = 0.3,
                                         corner_radius = 10,
                                         )
