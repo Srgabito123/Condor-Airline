@@ -8,13 +8,6 @@ root9.geometry("1000x600")
 root9.resizable(0, 0)
 root9.config(bg = "light pink")
 # root9.iconbitmap("images/ICONO.ico")
-root9 = ctk.CTk()
-root9.title("CONDOR-AIRLINES")
-root9._set_appearance_mode("light")
-root9.geometry("1000x600")
-root9.resizable(0, 0)
-root9.config(bg = "light pink")
-# root9.iconbitmap("images/ICONO.ico")
 
 #---------------------------FONTS---------------------------
 
@@ -29,18 +22,9 @@ destino = "Bogota"
 fecha = "20/06/2024"
 vuelo = "CA-1234"
 hora = "12:00"
-#---------------------------variables---------------------------
-
-nombre = "Burbuja"
-origen = "Cartagena"
-destino = "Bogota"
-fecha = "20/06/2024"
-vuelo = "CA-1234"
-hora = "12:00"
 
 #---------------------------FRAMES---------------------------
 
-frame_principal = ctk.CTkFrame(master = root9,
 frame_principal = ctk.CTkFrame(master = root9,
                         width = 1000,
                         height = 600,
