@@ -1,40 +1,53 @@
-from customtkinter import *
-def initialize_root6():
+import customtkinter as ctk
+import CONSTANTES
 
+
+departure_time = ""
+arrival_time = ""
+departure_city = ""
+arrival_city = ""
+price = ""
+
+def initialize_root6(num):
+   global departure_time, arrival_time, departure_city, arrival_city
    #-------------------------------VENTANA 6-------------------------
 
-   root6 = CTk()
+   root6 = ctk.CTk()
    root6.title("CONDOR-AIRLINES")
    root6._set_appearance_mode("light")
    root6.geometry("1000x600")
    root6.resizable(0,0)
    root6.config(bg = "#d7bb9f")
    root6.iconbitmap("images/ICONO.ico")
-   #
+   
    #---------------------------VARIABLES---------------------------
 
-   arrival_time = "13:00"
-   departure_time = "10:00"
-   departure_place = "Bogotá"
-   arrival_place = "Cartagena"
-   going = f"Going: {departure_place} - {arrival_place}"
-   price = "2.000.000"
-   date_ = "2024-06-13"
+   category = ""
+   if num == 1:
+      category = "Premium"
+   elif num == 2:
+      category = "Diamante"
+   elif num == 3:
+      category = "Plata"
+
+
+
+   
+   ida = f"Ida: {departure_city} - {arrival_city}"
    arrow = "-------------------------------------->"
-   category = "Aluminio"
-   font_1 = CTkFont(family="Inherit", size=18, weight="bold")
-   principal_frame = CTkFrame(master = root6,
+   font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
+   principal_frame = ctk.CTkFrame(master = root6,
                               width = 1000,
                               height = 600,
-                              corner_radius = 10,
+                              corner_radius = 30,
                               fg_color = "#d7bb9f",
-                              border_color = "white",
+                              border_color = "#d7bb9f",
                               border_width = 2,
-                              bg_color = "transparent"
+                              bg_color = "#d7bb9f"
                               )
    #---------------------------BOTONES---------------------------
-   select_button = CTkButton(master = principal_frame,
-                                 text = "SELECT",
+   select_button = ctk.CTkButton(master = root6,
+                                 text = "SELECCIONAR",
                                  bg_color="#d7bb9f", 
                                  fg_color="#a06553",
                                  text_color = "white",
@@ -46,108 +59,18 @@ def initialize_root6():
                                  hover_color = "beige",
                                  border_color = "#a06553"
                                  )
-   option1 = CTkButton(master = principal_frame, 
-                     bg_color = "#d7bb9f", 
-                     width = 850, 
-                     height = 100, 
-                     corner_radius = 50,
-                     fg_color = "beige",
-                     hover_color = "beige",
-                     text = " ",
-                     border_width = 1.5,
-                     border_color = "#a06553"
-                     )
-   #---------------------------FRAMES---------------------------
-   journey_frame = CTkFrame(master = principal_frame, 
-                        fg_color="white", 
-                        bg_color = "#d7bb9f",  
-                        corner_radius = 10, 
-                        width = 0.11, 
-                        height = 0.065, 
-                        )
-   #---------------------------TEXTOS---------------------------
-   text_journey = CTkLabel(master= principal_frame, 
-                        text = going, 
-                        fg_color = "beige", 
-                        width = 0.9, 
-                        height = 0.7, 
-                        text_color = "black", 
-                        font = (font_1, 12),  
-                        bg_color = "#d7bb9f",
-                        corner_radius = 10
-                        )
-   text_departure_time = CTkLabel(master = option1, 
-                              text = departure_time,
-                              fg_color = "beige",
-                              text_color = "black",
-                              font = (font_1, 18),
-                              width = 0.1,
-                              height = 0.3,
-                              corner_radius = 10,
-                              bg_color = "beige"
-                              )
-   text_arrival_time = CTkLabel(master = option1, 
-                              text = arrival_time,
-                              fg_color = "beige",
-                              text_color = "black",
-                              font = (font_1, 18),
-                              width = 0.1,
-                              height = 0.3,
-                              corner_radius = 10,
-                              bg_color = "beige"
-                              )
-   text_departure_place = CTkLabel(master = option1, 
-                              text = departure_place,
-                              fg_color = "Beige",
-                              text_color = "black",
-                              font = (font_1, 13),
-                              width = 0.1,
-                              height = 0.3,
-                              corner_radius = 10,
-                              bg_color = "beige"
-                              )
-   text_arrival_place = CTkLabel(master = option1, 
-                              text = arrival_place,
-                              fg_color = "Beige",
-                              text_color = "black",
-                              font = (font_1, 13),
-                              width = 0.1,
-                              height = 0.3,
-                              corner_radius = 10,
-                              bg_color = "beige"
-                              )
-   text_desde = CTkLabel(master = option1,
-                        text = """DESDE:
-
-                           COP $""",
-                        fg_color = "beige",
-                        text_color = "black",
-                        font = (font_1, 11),
-                        width = 0.1,
-                        height = 0.3,
-                        corner_radius = 10,
-                        bg_color = "beige"
-                        )
-   text_price = CTkLabel(master = option1, 
-                        text = price, 
-                        fg_color = "beige", 
-                        text_color = "black", 
-                        font = (font_1, 11), 
-                        width = 0.1, 
-                        height = 0.3, 
-                        corner_radius = 10, 
-                        bg_color = "beige"
-                        )
-   text_arrow = CTkLabel(master = option1,
-                           text = arrow,
-                           fg_color = "beige",
-                           text_color = "black",
-                           font = ("roboto", 20),
-                           width = 0.3,
-                           height = 0.3,
-                           bg_color = "beige"
-                           )
-   text_reservation = CTkLabel(master = principal_frame,
+   button_flight = ctk.CTkButton(master = principal_frame,    
+                                width = 890, 
+                                height = 160, 
+                                corner_radius = 50,
+                                fg_color = "beige",
+                                hover_color = "beige",
+                                text = " ",
+                                border_color= "black",
+                                border_width= 1.5,
+                                )
+   
+   text_reservation = ctk.CTkLabel(master = root6,
                            text = f"Total reservation: COP ${price}",
                            fg_color = "#d7bb9f",
                            text_color = "black",
@@ -157,7 +80,88 @@ def initialize_root6():
                            bg_color = "#d7bb9f",
                            corner_radius = 10
                            )
-   text_category = CTkLabel(master = option1,
+
+   departure_hour_text = ctk.CTkLabel(master = button_flight, 
+                                text = departure_time,
+                                fg_color = "transparent",
+                                bg_color= "beige",
+                                text_color = "black",
+                                font = font_1,
+                                width = 0.1,
+                                height = 0.3
+                                )
+
+   arrival_hour_text = ctk.CTkLabel(master = button_flight, 
+                                text = arrival_time,
+                                fg_color = "beige",
+                                text_color = "black",
+                                font = font_1,
+                                width = 0.1,
+                                height = 0.3,
+                                corner_radius = 10,
+                                )
+
+   departure_place_text = ctk.CTkLabel(master = button_flight, 
+                                text = departure_city,
+                                fg_color = "Beige",
+                                text_color = "black",
+                                font = font_1,
+                                width = 0.1,
+                                height = 0.3,
+                                corner_radius = 10,
+                                )
+
+   arrival_place_text = ctk.CTkLabel(master = button_flight, 
+                                text = arrival_city,
+                                fg_color = "Beige",
+                                text_color = "black",
+                                font = font_1,
+                                width = 0.1,
+                                height = 0.3,
+                                corner_radius = 10,
+                                )
+
+   text_desde = ctk.CTkLabel(master = button_flight,
+                                text = """DESDE:
+
+                                    COP $""",
+                                fg_color = "transparent",
+                                text_color = "black",
+                                font = font_1,
+                                width = 0.1,
+                                height = 0.3,
+                                corner_radius = 10,
+                                )
+
+   text_precio = ctk.CTkLabel(master = button_flight,
+                                text = price,
+                                fg_color = "beige",
+                                text_color = "black",
+                                font = font_1,
+                                width = 0.1,
+                                height = 0.3,
+                                corner_radius = 10,
+                                )
+
+   text_flechita = ctk.CTkLabel(master = button_flight,
+                                text = arrow,
+                                fg_color = "beige",
+                                text_color = "black",
+                                font = ("roboto", 20),
+                                width = 0.3,
+                                height = 0.3,
+                                )
+        
+   button_flight.pack(padx=5, pady=10, expand= True, anchor = "center")
+   departure_hour_text.place(relx = 0.1, rely = 0.4, anchor = "center")
+   departure_place_text.place(relx = 0.1, rely = 0.54, anchor = "center")
+   arrival_hour_text.place(relx = 0.5, rely = 0.4, anchor = "center")
+   arrival_place_text.place(relx = 0.5, rely = 0.54, anchor = "center")
+   text_desde.place(relx = 0.7, rely = 0.4, anchor = "center")
+   text_precio.place(relx = 0.89, rely = 0.53, anchor = "center")
+   text_flechita.place(relx = 0.3, rely = 0.45, anchor = "center")
+   #---------------------------TEXTOS---------------------------
+   text_category = ctk.CTkLabel(master = button_flight,
                            text = category,
                            fg_color = "#a06553",
                            text_color = "white",
@@ -167,19 +171,20 @@ def initialize_root6():
                            corner_radius = 10,
                            bg_color = "transparent"
                            )
+   text_viaje = ctk.CTkLabel(master = root6, 
+                            text = ida, 
+                            fg_color = "beige", 
+                            width = 0.2, 
+                            height = 0.065, 
+                            text_color = "black", 
+                            font = font_1, 
+                            corner_radius = 10, 
+                            bg_color = "#d7bb9f",
+                            )
    #---------------------------POSICIONAMIENTO-----------------------
-   principal_frame.place(relx = 0.5, rely = 0.5, anchor = "center")
-   journey_frame.place(x = 6, y = 5, relwidth = 0.3, relheight = 0.065)
-   text_journey.place(x = 6, y = 5, relwidth = 0.3, relheight = 0.065)
-   option1.place(relx = 0.5, rely = 0.25, anchor = "center")
-   text_departure_time.place(x = 25, y = 30, relwidth = 0.08, relheight = 0.15)
-   text_departure_place.place(x = 25, y = 55, relwidth = 0.08, relheight = 0.18)
-   text_arrival_time.place(x = 369, y = 30, relwidth = 0.08, relheight = 0.15)
-   text_arrival_place.place(x = 369, y = 55, relwidth = 0.08, relheight = 0.18)
-   text_desde.place(x = 460, y = 27, relwidth = 0.19, relheight = 0.4)
-   text_price.place(x = 596, y = 55, relwidth = 0.08, relheight = 0.085)
-   text_arrow.place(x = 103, y = 37, relwidth = 0.3, relheight = 0.1)
+   principal_frame.place(relx = 0.5, rely = 0.3, anchor = "center")
    text_category.place(x = 710, y = 30, relwidth = 0.1, relheight = 0.25)
    select_button.place(relx = 0.83, rely = 0.825, anchor = "center")
+   text_viaje.place(x = 6, y = 8, relwidth = 0.3, relheight = 0.065)
    text_reservation.place(x = 50, y = 480, relwidth = 0.35, relheight = 0.07)
    root6.mainloop()
