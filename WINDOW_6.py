@@ -1,7 +1,8 @@
 from customtkinter import *
 def initialize_root6():
-   
-   #-------------------------------VENTANA 6------------------------------------------
+
+   #-------------------------------VENTANA 6-------------------------
+
    root6 = CTk()
    root6.title("CONDOR-AIRLINES")
    root6._set_appearance_mode("light")
@@ -9,7 +10,7 @@ def initialize_root6():
    root6.resizable(0,0)
    root6.config(bg = "#d7bb9f")
    root6.iconbitmap("images/ICONO.ico")
-
+   #
    #---------------------------VARIABLES---------------------------
 
    arrival_time = "13:00"
