@@ -213,8 +213,8 @@ for row in range(rows):
                                    height=22,
                                    text="",
                                    command=lambda row=row, col=col: is_seat_selected(row, col),
-                                   fg_color="beige",
-                                   hover_color="gray",
+                                   fg_color="#a06553",
+                                   hover_color="#a06553",
                                    border_color="#a06553",
                                    border_width=2)
             button.grid(row=row-8, column=col, padx=14, pady=8, sticky="nsew")

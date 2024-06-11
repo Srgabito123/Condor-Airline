@@ -3,6 +3,7 @@ from PIL import Image, ImageTk
 from tkinter import messagebox as mb
 import CONSTANTES
 
+
 def initialize_root2():
     #--------------------------------VENTANA 2---------------------------------------
 
@@ -317,6 +318,3 @@ def initialize_root2():
     button_search.place(x=425, y=370)
 
     root2.mainloop()
-
-if __name__ == "__main__":
-    initialize_root2()
