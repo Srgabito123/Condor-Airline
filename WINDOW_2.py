@@ -1,13 +1,10 @@
 import customtkinter as ctk
 from PIL import Image, ImageTk
+from tkinter import messagebox as mb
+import CONSTANTES
 
-def switch_to_root2():
 
-    #--------------------------------FUNCIONES---------------------------------------
-
-    def buscar():
-        pass
-
+def initialize_root2():
     #--------------------------------VENTANA 2---------------------------------------
 
     root2 = ctk.CTk()
@@ -25,30 +22,41 @@ def switch_to_root2():
     root2.config(background="#d7bb9f")
     root2.title("CONDOR-AIRLINES")
     root2.iconbitmap("images/ICONO.ico")
-
+    
     #-------------------------VARIBLES OPTION MENUS----------------------------------
 
-    roundtrip_options = ["Solo ida", "Ida y vuelta"] #Valores
+    roundtrip_options = ["Solo ida"] #Valores
     roundtrip_value = ctk.StringVar() #Tipo de variable
     roundtrip_value.set(roundtrip_options[0]) #Valor por defecto
 
-    origin_city = ["Bogotá (BOG)", "Medellin (MDE)", "Santa Marta (SMR)", "Cali (CLO)", "Cartagena (CTG)"] 
-    valor_origen = ctk.StringVar() 
-    valor_origen.set(origin_city[0]) 
-
-    ciudades_destino = ["Bogotá (BOG)", "Medellin (MDE)", "Santa Marta (SMR)", "Cali (CLO)", "Cartagena (CTG)"] 
-    valor_destino = ctk.StringVar() 
-
-    departure_dates = ["5/06/2024", 
-                      "6/06/2024", 
-                      "12/06/2024", 
-                      "13/06/2024", 
-                      "19/06/2024", 
-                      "20/06/2024", 
-                      "26/06/2024", 
-                      "27/06/2024"]
+    origin_value = ctk.StringVar() 
+    destiny_value = ctk.StringVar() 
     dates_value = ctk.StringVar() 
-    dates_value.set(departure_dates[0])
+    amountpeople_value = ctk.IntVar()
+
+    #--------------------------------FUNCIONES---------------------------------------
+
+    def switch_to_root4_5():
+        import CONSTANTES
+        CONSTANTES.recive_data(origin_value.get(),
+                                    destiny_value.get(),
+                                    dates_value.get())
+
+        if origin_value.get() == "" or destiny_value.get() == "" or dates_value.get() == "" or amountpeople_value.get() == 0:
+            mb.showwarning("Error", "Por favor, llene todos los campos")
+            return
+        if origin_value.get() == destiny_value.get():
+            mb.showwarning("Error", "El origen y el destino no pueden ser iguales")
+            return
+        if CONSTANTES.flights == []:
+            mb.showwarning("Error", "No hay vuelos disponibles en esta fecha")
+            return
+        else:
+            root2.destroy()
+            import WINDOW_4_5          
+            WINDOW_4_5.initialize_root4_5(origin_value.get(),
+                                            destiny_value.get(),
+                                            dates_value.get())
 
     #----------------------------------FRAMES----------------------------------------
 
@@ -75,7 +83,7 @@ def switch_to_root2():
     amountpeople_frame = ctk.CTkFrame(root2, 
                         fg_color = "#d7bb9f",
                         bg_color = "#d7bb9f", 
-                        width = 77, 
+                        width = 103, 
                         height = 56, 
                         border_color = "#a06553", 
                         border_width = 3,
@@ -131,9 +139,9 @@ def switch_to_root2():
 
     #--------------------------------------IMÁGEN----------------------------------------
 
-    icon_image = Image.open("D:/GABO/2024/UNIVERSIDAD/SEMESTRE 1/FUNDAMENTOS DE PROGRAMACIÓN IMPERATIVA/PROYECTO FINAL/Repositorio/PERSONAS.png")
-    icon_image = icon_image.resize((20, 20), Image.Resampling.LANCZOS)
-    icon_photo = ImageTk.PhotoImage(icon_image)
+    # icon_image = Image.open("D:/GABO/2024/UNIVERSIDAD/SEMESTRE 1/FUNDAMENTOS DE PROGRAMACIÓN IMPERATIVA/PROYECTO FINAL/Repositorio/PERSONAS.png")
+    # icon_image = icon_image.resize((20, 20), Image.Resampling.LANCZOS)
+    # icon_photo = ImageTk.PhotoImage(icon_image)
 
     #----------------------------------OPTION MENUS----------------------------------------
 
@@ -157,8 +165,8 @@ def switch_to_root2():
                                             )
 
     origin_optionmenu = ctk.CTkOptionMenu(root2, 
-                                            variable = valor_origen, 
-                                            values = origin_city,
+                                            variable = origin_value, 
+                                            values = CONSTANTES.origin_city,
                                             width = 220,
                                             height=50,
                                             font=("Poppins", 16),
@@ -176,8 +184,8 @@ def switch_to_root2():
                                             )
 
     destination_optionmenu = ctk.CTkOptionMenu(root2, 
-                                            variable = valor_destino, 
-                                            values = ciudades_destino,
+                                            variable = destiny_value, 
+                                            values = CONSTANTES.destiny_city,
                                             width = 220,
                                             height=50,
                                             font=("Poppins", 16),
@@ -196,7 +204,7 @@ def switch_to_root2():
 
     dateflight_optionmenu = ctk.CTkOptionMenu(root2, 
                                             variable = dates_value, 
-                                            values = departure_dates,
+                                            values = CONSTANTES.departure_date,
                                             width = 220,
                                             height=50,
                                             font=("Poppins", 16),
@@ -213,24 +221,33 @@ def switch_to_root2():
                                             corner_radius = 2
                                             )
 
-    #--------------------------------------CAJAS DE TEXTO----------------------------------------
-
-    amountpeople_textbox = ctk.CTkEntry(image_frame, 
-                        width = 40,  
-                        height = 50,  
-                        fg_color="beige", 
-                        border_width=0, 
-                        font=("Poppins", 14, "bold")
-                        )
+    amountpeople_optionmenu = ctk.CTkOptionMenu(image_frame, 
+                                            variable = amountpeople_value, 
+                                            values = ["1"],
+                                            width = 10,
+                                            height=50,
+                                            font=("Poppins", 16),
+                                            text_color = "brown",
+                                            bg_color = "beige",
+                                            fg_color = "beige",
+                                            cursor = "hand2",
+                                            button_color = "beige",
+                                            button_hover_color = "#a06553",
+                                            dropdown_font = ("Poppins", 16),
+                                            dropdown_text_color = "brown",
+                                            dropdown_hover_color = "#a06553",
+                                            dropdown_fg_color = "beige",
+                                            corner_radius = 2
+                                            )
 
     #-----------------------------------LABELS----------------------------------------
 
-    icon_people_label = ctk.CTkLabel(image_frame, 
-                                    image=icon_photo, 
-                                    text="", 
-                                    fg_color="beige",
-                                    height = 30
-                                    )
+    # icon_people_label = ctk.CTkLabel(image_frame, 
+    #                                 image=icon_photo, 
+    #                                 text="", 
+    #                                 fg_color="beige",
+    #                                 height = 30
+    #                                 )
 
     origin_label = ctk.CTkLabel(root2, 
                                 text = "Origen",
@@ -277,21 +294,21 @@ def switch_to_root2():
                         fg_color="#a06553",
                         cursor="hand2",
                         hover_color="lightblue",
-                        command = buscar)
+                        command = switch_to_root4_5)
 
     #----------------------------------POSICIONAMIENTO----------------------------------------
 
     frame_1.place(x = 70, y = 70)
     roundtrip_frame.place(x = 97, y = 105)
-    amountpeople_frame.place(x = 797, y = 104.8)
+    amountpeople_frame.place(x = 777, y = 104.8)
     origin_frame.place(x = 97, y = 241)
     destination_frame.place(x = 320, y = 241)
     dateflight_frame.place(x = 647, y = 241)
     divisor_line.place(x = 70, y = 190)
     roundtrip_optionmenu.place(x = 100, y = 108)
-    image_frame.place(x = 800, y = 108)
-    amountpeople_textbox.grid(row=0, column=1, sticky="nsew", padx=(0, 5))
-    icon_people_label.grid(row=0, column=0, sticky="nsew", padx=(5, 0))
+    image_frame.place(x = 780, y = 108)
+    amountpeople_optionmenu.grid(row=0, column=1, sticky="nsew", padx=(0, 5))
+    #icon_people_label.grid(row=0, column=0, sticky="nsew", padx=(5, 0))
     origin_label.place(x = 100, y = 244)
     destination_label.place(x = 323, y = 244)
     origin_optionmenu.place(x = 100, y = 260)
