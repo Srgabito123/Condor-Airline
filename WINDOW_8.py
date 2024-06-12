@@ -20,7 +20,6 @@ def initialize_root8():
           elif len(characters_3) != 3:
                messagebox.showerror("ERROR", "Ingrese un número de CCV válido")
           else:
-               
                root8.destroy()
                import WINDOW_9
                WINDOW_9.initialize_root9()

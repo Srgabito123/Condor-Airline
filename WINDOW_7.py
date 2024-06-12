@@ -3,6 +3,7 @@ import customtkinter as ctk
 from tkinter import messagebox
 import AUTENTICACIÓN_CORREO
 import CONSTANTES
+import random
 
 def initialize_root7():
     global email, entry_first_name, entry_last_name
@@ -40,6 +41,16 @@ def initialize_root7():
             root7.destroy()
             import WINDOW_3
             WINDOW_3.initialize_root3()
+     
+    def create_code(name, letters_numbers):
+        name = str(entry_first_name.get()).capitalize()
+        letters_numbers = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
+        code = name + "-"
+        for i in range(6):
+            code += str(random.choice(letters_numbers))
+            create_code(name[0], letters_numbers)
+        print(code)
+ 
  
     #----------------------------VARIABLES OPTIPON MENUS-------------------------------
 
