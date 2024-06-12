@@ -13,10 +13,10 @@ for line in file:
     lista = [element.strip() for element in lista]
     matriz.append(lista)
 
-#print(tb.tabulate(matriz))
+print(tb.tabulate(matriz))
 
 def recive_data(origin, destiny, date):
-    global flights, departure_hour, arrival_hour, price, all_dates, mid_price, max_price, min_price
+    global flights, departure_hour, arrival_hour, price, all_dates, mid_price, max_price, min_price, takeoff_hour, landing_hour, exit_city, coming_city
 
     flights = []
     all_flights = []
@@ -43,6 +43,11 @@ def recive_data(origin, destiny, date):
     min_price = [flights[i][4] for i in range(len(flights))]
     mid_price = [flights[i][5] for i in range(len(flights))]
     max_price = [flights[i][6] for i in range(len(flights))]
+
+    takeoff_hour = [flights[i][2] for i in range(len(flights))]
+    landing_hour = [flights[i][3] for i in range(len(flights))]
+    exit_city = [flights[i][7] for i in range(len(flights))]
+    coming_city = [flights[i][8] for i in range(len(flights))]
  
 
     #print(tb.tabulate(prices))

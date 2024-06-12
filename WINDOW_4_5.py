@@ -22,15 +22,16 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
     root4_5.config(background="#d7bb9f")
     root4_5.title("CONDOR-AIRLINES")
     root4_5.iconbitmap("images/ICONO.ico")
+
     #---------------------------FUNCTIONS---------------------------
 
-    def switch_to_window6(num):
+    def switch_to_window6(num, takeoff_hour, landing_hour, exit_city, coming_city, price):
         root4_5.destroy()
         import WINDOW_6
-        WINDOW_6.initialize_root6(num)
+        WINDOW_6.initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, price)
         
 
-    def eleccion_vuelo(min_price, mid_price, max_price):
+    def eleccion_vuelo(min_price, mid_price, max_price, takeoff_hour, landing_hour, exit_city, coming_city):
 
         if flight_choice_frame.winfo_viewable():
             flight_choice_frame.place_forget()
@@ -75,7 +76,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                     corner_radius=36,
                                     text_color="black",
                                     text="Seleccionar",
-                                    command=lambda: switch_to_window6(3)
+                                    command=lambda: switch_to_window6(3, takeoff_hour, landing_hour, 
+                                                                      exit_city, coming_city, min_price)
                                     )
 
             select_diamante = ctk.CTkButton(master = diamante_clase,
@@ -88,7 +90,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                     corner_radius=36,
                                     text_color="black",
                                     text="Seleccionar",
-                                    command=lambda: switch_to_window6(2)
+                                    command=lambda: switch_to_window6(2, takeoff_hour, landing_hour, 
+                                                                      exit_city, coming_city, mid_price)
                                     )
 
             select_premium = ctk.CTkButton(master = premium_clase,
@@ -101,7 +104,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                     corner_radius=36,
                                     text_color="black",
                                     text="Seleccionar",
-                                    command=lambda: switch_to_window6(1)
+                                    command=lambda: switch_to_window6(1, takeoff_hour, landing_hour, 
+                                                                      exit_city, coming_city, max_price)
                                     )
 
             close_window = ctk.CTkButton(master = flight_choice_frame,
@@ -325,10 +329,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
 
     #---------------------------BOTONES---------------------------
 
-
     for i in range(len(CONSTANTES.flights)):
-
-        buttons = []
 
         button_flight = ctk.CTkButton(master = flights_frame,    
                                 width = 890, 
@@ -339,7 +340,13 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                 text = " ",
                                 border_color= "black",
                                 border_width= 1.5,
-                                command=lambda i=i:eleccion_vuelo(CONSTANTES.min_price[i], CONSTANTES.mid_price[i], CONSTANTES.max_price[i])
+                                command=lambda i=i:eleccion_vuelo(CONSTANTES.min_price[i], 
+                                                                  CONSTANTES.mid_price[i], 
+                                                                  CONSTANTES.max_price[i],
+                                                                  CONSTANTES.takeoff_hour[i],
+                                                                  CONSTANTES.landing_hour[i],
+                                                                  CONSTANTES.exit_city[i],
+                                                                  CONSTANTES.coming_city[i])
                                 )
 
         departure_hour_text = ctk.CTkLabel(master = button_flight, 
@@ -421,8 +428,6 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
         text_desde.place(relx = 0.68, rely = 0.4, anchor = "center")
         text_precio.place(relx = 0.86, rely = 0.53, anchor = "center")
         text_flechita.place(relx = 0.3, rely = 0.45, anchor = "center")
-        
-        buttons.append(button_flight)
 
         def replace_buttons(departure_city, arrival_city, date):
 
@@ -441,8 +446,13 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                         text = " ",
                                         border_color= "black",
                                         border_width= 1.5,
-                                        command=lambda i=i:eleccion_vuelo(CONSTANTES.min_price[i], CONSTANTES.mid_price[i], CONSTANTES.max_price[i])
-                                        )
+                                        command=lambda i=i:eleccion_vuelo(CONSTANTES.min_price[i], 
+                                                                  CONSTANTES.mid_price[i], 
+                                                                  CONSTANTES.max_price[i],
+                                                                  CONSTANTES.takeoff_hour[i],
+                                                                  CONSTANTES.landing_hour[i],
+                                                                  CONSTANTES.exit_city[i],
+                                                                  CONSTANTES.coming_city[i]))
 
                 departure_hour_text = ctk.CTkLabel(master = button_flight, 
                                         text = CONSTANTES.departure_hour[i],
@@ -523,8 +533,6 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                 text_desde.place(relx = 0.7, rely = 0.4, anchor = "center")
                 text_precio.place(relx = 0.89, rely = 0.53, anchor = "center")
                 text_flechita.place(relx = 0.3, rely = 0.45, anchor = "center")
-
-    print(buttons)
 
     for i in range(len(CONSTANTES.all_dates)):
         day_button = ctk.CTkButton(master = date_buttons_frame,

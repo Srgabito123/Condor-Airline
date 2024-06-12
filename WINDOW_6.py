@@ -2,13 +2,9 @@ import customtkinter as ctk
 import CONSTANTES
 
 
-departure_time = ""
-arrival_time = ""
-departure_city = ""
-arrival_city = ""
-price = ""
 
-def initialize_root6(num):
+
+def initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, price):
    global departure_time, arrival_time, departure_city, arrival_city
    #-------------------------------VENTANA 6-------------------------
 
@@ -25,6 +21,12 @@ def initialize_root6(num):
       import WINDOW_7
       WINDOW_7.initialize_root7() 
    #---------------------------VARIABLES---------------------------
+
+   departure_time = takeoff_hour
+   arrival_time = landing_hour
+   departure_city = exit_city
+   arrival_city = coming_city
+   price = price
 
    category = ""
    if num == 1:
