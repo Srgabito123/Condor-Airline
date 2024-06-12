@@ -1,9 +1,12 @@
 from tkinter import *
 import customtkinter as ctk
+from tkinter import messagebox
 import AUTENTICACIÓN_CORREO
-
+import CONSTANTES
 
 def initialize_root7():
+    global email, entry_first_name, entry_last_name
+
     root7 = ctk.CTk()
     root7.title("CONDOR-AIRLINE")
     root7._set_appearance_mode("light")
@@ -19,6 +22,25 @@ def initialize_root7():
     root.config(bg = "light pink")
     # root.iconbitmap("logo.ico")
 
+    def switch_to_root3():
+        email_ = str(email.get())
+        if entry_first_name.get() == '' or entry_last_name.get() == '' or genero.get() == '' or identification.get() == "" or type_identification.get() == '' or nationality.get() == '' or phone.get() == '' or email.get() == '':
+            messagebox.showerror("ERROR", "DEBE LLENAR TODOS LOS CAMPOS")
+            return
+        if " " in email_:
+            messagebox.showerror("ERROR", "CORREO INVALIDO")
+            return
+        if email_.count("@") != 1:
+            messagebox.showerror("ERROR", "CORREO INVALIDO")
+            return
+        if email_.count(".") > 1:
+            messagebox.showerror("ERROR", "CORREO INVALIDO")
+            return
+        else: 
+            root7.destroy()
+            import WINDOW_3
+            WINDOW_3.initialize_root3()
+ 
     #----------------------------VARIABLES OPTIPON MENUS-------------------------------
 
     gender_options = ["Masculino", "Femenino", "Otro"]
@@ -202,22 +224,23 @@ def initialize_root7():
                             border_color = "#a06553",
                             border_width = 2,
                             hover_color= "light blue",
-                            text_color= "white"
+                            text_color= "white",
+                            command = switch_to_root3
                             )
 
-    continue_flight = ctk.CTkButton(master = make_flights_frame,
-                            text = "Continuar",
-                            width = 250,
-                            height = 50,
-                            corner_radius = 10,
-                            fg_color = "#a06553",
-                            font = font_1,
-                            border_color = "light pink",
-                            border_width = 2,
-                            hover_color= "light blue",
-                            text_color= "white",
-                            command = AUTENTICACIÓN_CORREO.email_authentication
-                            )
+    # continue_flight = ctk.CTkButton(master = make_flights_frame,
+    #                         text = "Continuar",
+    #                         width = 250,
+    #                         height = 50,
+    #                         corner_radius = 10,
+    #                         fg_color = "#a06553",
+    #                         font = font_1,
+    #                         border_color = "light pink",
+    #                         border_width = 2,
+    #                         hover_color= "light blue",
+    #                         text_color= "white",
+    #                         command = switch_to_root8
+    #                         )
 
     #-------------------------POSICIONAMIENTO-------------------------
 
@@ -235,7 +258,7 @@ def initialize_root7():
     phone.place(relx = 0.5, rely = 0.7, anchor = "center")
     email.place(relx = 0.8, rely = 0.7, anchor = "center")
     button_make_flight.place(relx = 0.2, rely = 0.7, anchor = "center")
-    continue_flight.place(relx = 0.5, rely = 0.9, anchor = "center")
+    # continue_flight.place(relx = 0.5, rely = 0.9, anchor = "center")
 
     root7.mainloop()
 

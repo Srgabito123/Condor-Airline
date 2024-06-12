@@ -1,5 +1,6 @@
 import tabulate as tb
 import WINDOW_2
+import WINDOW_7
 
 #--------------------------------------SACAR DATOS DEL TXT------------------------------------
 file = open("Datos_Vuelos _Finales.txt", 'r')
@@ -59,7 +60,10 @@ origin_city = list(origin_city)
 destiny_city = list(destiny_city)
 departure_date = list(departure_date)
 
+# firts_name = str(WINDOW_7.entry_first_name.get())
+# last_name = str(WINDOW_7.entry_last_name.get())
 
+# print(firts_name, last_name)
 
 file.close()
 

@@ -20,6 +20,10 @@ def initialize_root6(num):
    root6.config(bg = "#d7bb9f")
    root6.iconbitmap("images/ICONO.ico")
    
+   def switch_to_root7():
+      root6.destroy()
+      import WINDOW_7
+      WINDOW_7.initialize_root7() 
    #---------------------------VARIABLES---------------------------
 
    category = ""
@@ -57,7 +61,8 @@ def initialize_root6(num):
                                  corner_radius = 10,
                                  border_width = 1.5,
                                  hover_color = "beige",
-                                 border_color = "#a06553"
+                                 border_color = "#a06553",
+                                 command= switch_to_root7
                                  )
    button_flight = ctk.CTkButton(master = principal_frame,    
                                 width = 890, 

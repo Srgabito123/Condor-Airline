@@ -28,9 +28,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
         root4_5.destroy()
         import WINDOW_6
         WINDOW_6.initialize_root6(num)
-        print(num)
         
-
 
     def eleccion_vuelo(min_price, mid_price, max_price):
 
@@ -38,6 +36,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
             flight_choice_frame.place_forget()
         else:
             flight_choice_frame.place(relx = 0.49, rely = 0.6, anchor = "center")
+
             plata_clase = ctk.CTkButton(master = flight_choice_frame,
                             width=285,
                             height=400, 
@@ -126,7 +125,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                 height = 0.3
                                 )
             precio_plata = ctk.CTkLabel(master = plata_clase,
-                                        text = f"Desde {min_price}$ COP",
+                                        text = f"Desde ${min_price} COP",
                                         fg_color = "transparent",
                                         text_color = "black",
                                         font = (font_1, 14),
@@ -154,7 +153,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                         )
                 
             precio_diamante = ctk.CTkLabel(master = diamante_clase,
-                                        text = f"Desde {mid_price}$ COP",
+                                        text = f"Desde ${mid_price} COP",
                                         fg_color = "transparent",
                                         text_color = "black",
                                         font = (font_1, 13),
@@ -182,7 +181,7 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                         )
                 
             precio_premium = ctk.CTkLabel(master = premium_clase,
-                                        text = f"Desde {max_price}$ COP",
+                                        text = f"Desde ${max_price} COP",
                                         fg_color = "transparent",
                                         text_color = "black",
                                         font = (font_1, 13),
@@ -390,8 +389,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                 fg_color = "transparent",
                                 text_color = "black",
                                 font = font_1,
-                                width = 0.1,
-                                height = 0.3,
+                                width = 80,
+                                height = 80,
                                 corner_radius = 10,
                                 )
 
@@ -400,8 +399,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                 fg_color = "beige",
                                 text_color = "black",
                                 font = font_1,
-                                width = 0.1,
-                                height = 0.3,
+                                width = 60,
+                                height = 30,
                                 corner_radius = 10,
                                 )
 
@@ -419,8 +418,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
         departure_place_text.place(relx = 0.1, rely = 0.54, anchor = "center")
         arrival_hour_text.place(relx = 0.5, rely = 0.4, anchor = "center")
         arrival_place_text.place(relx = 0.5, rely = 0.54, anchor = "center")
-        text_desde.place(relx = 0.66, rely = 0.4, anchor = "center")
-        text_precio.place(relx = 0.83, rely = 0.53, anchor = "center")
+        text_desde.place(relx = 0.68, rely = 0.4, anchor = "center")
+        text_precio.place(relx = 0.86, rely = 0.53, anchor = "center")
         text_flechita.place(relx = 0.3, rely = 0.45, anchor = "center")
         
         buttons.append(button_flight)
