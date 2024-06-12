@@ -47,7 +47,7 @@ def initialize_root9():
                             width = 1000,
                             height = 70,
                             corner_radius = 0,
-                            fg_color = "light blue",
+                            fg_color = "#a06553",
                             border_color = "white",
                             border_width = 1.5,
                             )
@@ -121,7 +121,7 @@ def initialize_root9():
                             )
 
     fecha = ctk.CTkLabel(master = frame_1,
-                            text = 'fecha',
+                            text = WINDOW_6.flight_date_f,
                             font = (font_2, 18),
                             text_color = "black",
                             )

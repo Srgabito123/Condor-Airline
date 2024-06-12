@@ -159,7 +159,7 @@ def initialize_root3():
                                 )
 
     aluminio_label = ctk.CTkLabel(aluminio_frame, 
-                                text="Aluminio", 
+                                text="Plata", 
                                 font=("Poppins", 16, "bold"),
                                 text_color="white",
                                 bg_color="#d7bb9f",

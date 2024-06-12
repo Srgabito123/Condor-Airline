@@ -4,8 +4,8 @@ import CONSTANTES
 
 
 
-def initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, price, flight_code):
-   global departure_time, arrival_time, departure_city, arrival_city, takeoff_hour_f, landing_hour_f, exit_city_f, coming_city_f, price_f, flight_code_f
+def initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, price, flight_code, flight_date_):
+   global departure_time, arrival_time, departure_city, arrival_city, takeoff_hour_f, landing_hour_f, exit_city_f, coming_city_f, price_f, flight_code_f, flight_date_f
    #-------------------------------VENTANA 6-------------------------
 
    takeoff_hour_f = takeoff_hour
@@ -14,6 +14,7 @@ def initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, pr
    coming_city_f = coming_city
    price_f = price
    flight_code_f = flight_code
+   flight_date_f = CONSTANTES.flight_date_
 
    root6 = ctk.CTk()
    root6.title("CONDOR-AIRLINES")

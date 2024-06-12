@@ -16,7 +16,7 @@ for line in file:
 print(tb.tabulate(matriz))
 
 def recive_data(origin, destiny, date):
-    global flights, departure_hour, arrival_hour, price, all_dates, mid_price, max_price, min_price, takeoff_hour, landing_hour, exit_city, coming_city, flight_code
+    global flights, departure_hour, arrival_hour, price, all_dates, mid_price, max_price, min_price, takeoff_hour, landing_hour, exit_city, coming_city, flight_code, flight_date_
 
     flights = []
     all_flights = []
@@ -50,6 +50,7 @@ def recive_data(origin, destiny, date):
     coming_city = [flights[i][8] for i in range(len(flights))]
 
     flight_code = [flights[i][0] for i in range(len(flights))]
+    flight_date_ = [flights[i][1] for i in range(len(flights))]
  
 
     #print(tb.tabulate(prices))

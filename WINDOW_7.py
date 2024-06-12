@@ -37,8 +37,14 @@ def initialize_root7():
         if email_.count("@") != 1:
             messagebox.showerror("ERROR", "CORREO INVALIDO")
             return
-        if email_.count(".") > 1:
+        if email_.count(".") != 1:
             messagebox.showerror("ERROR", "CORREO INVALIDO")
+            return
+        if identification.get().isdigit() == False:
+            messagebox.showerror("ERROR", "Ingrese solo números en el campo de identificación")
+            return
+        if phone.get().isdigit() == False:
+            messagebox.showerror("ERROR", "Ingrese solo números en el campo de teléfono")
             return
         else: 
             root7.destroy()
