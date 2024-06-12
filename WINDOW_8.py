@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import messagebox
+import WINDOW_6
 #ventana 8
 def initialize_root8():
      
@@ -15,38 +16,52 @@ def initialize_root8():
      def switch_to_root9(): 
           characters_16 = str(card_number.get())
           characters_3 = str(ccv.get())
+          error_card = 0
+          error_ccv = 0
+          for i in characters_16:
+               if i not in "0123456789":
+                    error_card += 1
+          for j in characters_3:     
+               if j not in "0123456789":
+                    error_ccv += 1
+
+          if error_card != 0 or error_ccv != 0:
+               messagebox.showerror("ERROR", "Ingrese solamente números en los campos")
+               return
           if len(characters_16) != 16:
                messagebox.showerror("ERROR", "Ingrese un número de tarjeta válido")
-          elif len(characters_3) != 3:
+               return
+          if len(characters_3) != 3:
                messagebox.showerror("ERROR", "Ingrese un número de CCV válido")
+               return
+          
           else:
                root8.destroy()
                import WINDOW_9
                WINDOW_9.initialize_root9()
      #---------------------------VARIABLES---------------------------
      
-     arrival_time = "13:00"
-     departure_time = "10:00"
-     departure_place = "Bogotá"
-     arrival_place = "Cartagena"
-     going = f"Going: {departure_place} - {arrival_place}"
-     price = "2.000.000"
-     date_ = "2024-06-13"
-     arrow = "------------------------>"
+     arrival_time = WINDOW_6.landing_hour_f
+     departure_time = WINDOW_6.takeoff_hour_f
+     departure_place = WINDOW_6.exit_city_f
+     arrival_place = WINDOW_6.coming_city_f
+     going = f"Ida: {departure_place} - {arrival_place}"
+     price = WINDOW_6.price_f
+     arrow = "---------------------->"
      category = "Aluminio"
      font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
-     month = ["January", 
-               "February", 
-               "March", 
-               "April", 
-               "May", 
-               "June", 
-               "July", 
-               "August", 
-               "September", 
-               "October", 
-               "November", 
-               "December"]
+     month = ["Enero", 
+               "Febrero", 
+               "Marzo", 
+               "Abril", 
+               "May0", 
+               "Junio", 
+               "Julio", 
+               "Agosto", 
+               "Septiembre", 
+               "Octubre", 
+               "Noviembre", 
+               "Diciembre"]
      years = ["2024", "2025", "2026", "2027", "2028", "2029", "2030","2031", "2032", "2033", "2034", "2035"]
      #---------------------------FRAMES---------------------------
      principal_frame = ctk.CTkFrame(master = root8, 
@@ -116,7 +131,7 @@ def initialize_root8():
                          fg_color = "beige",
                          text_color = "black",
                          bg_color = "transparent",
-                         placeholder_text = "Titular name",
+                         placeholder_text = "Nombre del titular",
                          placeholder_text_color = "#a06553",
                          font = (font_1, 16)
                          )
@@ -128,7 +143,7 @@ def initialize_root8():
                          fg_color = "beige",
                          text_color = "black",
                          bg_color = "transparent",
-                         placeholder_text = "Card number",
+                         placeholder_text = "Número de tarjeta",
                          placeholder_text_color = "#a06553",
                          font = (font_1, 16)
                          )
@@ -146,7 +161,7 @@ def initialize_root8():
                     )
      #---------------------------BOTONES---------------------------
      pay = ctk.CTkButton(master = principal_frame,
-                    text = "PAY",
+                    text = "PAGAR",
                     text_color = "white",
                     font = (font_1, 16, "bold"),
                     width = 80,
@@ -171,7 +186,7 @@ def initialize_root8():
                     )
      #---------------------------TEXTOS---------------------------
      data = ctk.CTkLabel(master = card_data_frame, 
-                    text = "DATA CARD",
+                    text = "DATOS DE LA TARJETA",
                     text_color = "black",
                     font = (font_1, 20),
                     width = 0.3,
@@ -179,7 +194,7 @@ def initialize_root8():
                     bg_color = "transparent"
                     )
      summary = ctk.CTkLabel(master = purchase_summary_frame,
-                                   text = "PURCHASE SUMMARY",
+                                   text = "RESUMEN DE COMPRA",
                                    text_color = "black",
                                    font = (font_1, 20),
                                    width = 0.3,
@@ -187,7 +202,7 @@ def initialize_root8():
                                    bg_color = "transparent"
                                    )
      date = ctk.CTkLabel(master = card_data_frame,
-                    text = "Expiration date",
+                    text = "Fecha de expiración",
                     text_color = "black",
                     font = (font_1, 12),
                     width = 0.3,
@@ -266,7 +281,7 @@ def initialize_root8():
                          bg_color = "beige"
                          )
      text_total_to_pay = ctk.CTkLabel(master = purchase_summary_frame,
-                              text = f"Total to pay: COP ${price}",
+                              text = f"Total a pagar: COP ${price}",
                               fg_color = "beige",
                               text_color = "black",
                               font = (font_1, 20),
@@ -300,9 +315,9 @@ def initialize_root8():
      option1.place(relx = 0.5, rely = 0.3, anchor = "center")
      text_departure_time.place(relx = 0.08, rely = 0.37, anchor = "center")
      text_departure_place.place(relx = 0.08, rely = 0.57, anchor = "center")
-     text_arrow.place(relx = 0.24, rely = 0.42, anchor = "center")
-     text_arrival_time.place(relx = 0.4, rely = 0.37, anchor = "center")
-     text_arrival_place.place(relx = 0.4, rely = 0.57, anchor = "center")
+     text_arrow.place(relx = 0.245, rely = 0.42, anchor = "center")
+     text_arrival_time.place(relx = 0.42, rely = 0.37, anchor = "center")
+     text_arrival_place.place(relx = 0.42, rely = 0.57, anchor = "center")
      text_desde.place(relx = 0.583, rely = 0.45, anchor = "center")
      text_price.place(relx = 0.743, rely = 0.615, anchor = "center")
      text_category.place(relx = 0.88, rely = 0.3, anchor = "center")

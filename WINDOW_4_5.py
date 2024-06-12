@@ -25,13 +25,13 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
 
     #---------------------------FUNCTIONS---------------------------
 
-    def switch_to_window6(num, takeoff_hour, landing_hour, exit_city, coming_city, price):
+    def switch_to_window6(num, takeoff_hour, landing_hour, exit_city, coming_city, price, flight_code, flight_date_ ):
         root4_5.destroy()
         import WINDOW_6
-        WINDOW_6.initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, price)
+        WINDOW_6.initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, price, flight_code, flight_date_ )
         
 
-    def eleccion_vuelo(min_price, mid_price, max_price, takeoff_hour, landing_hour, exit_city, coming_city):
+    def eleccion_vuelo(min_price, mid_price, max_price, takeoff_hour, landing_hour, exit_city, coming_city, flight_code, flight_date_):
 
         if flight_choice_frame.winfo_viewable():
             flight_choice_frame.place_forget()
@@ -77,7 +77,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                     text_color="black",
                                     text="Seleccionar",
                                     command=lambda: switch_to_window6(3, takeoff_hour, landing_hour, 
-                                                                      exit_city, coming_city, min_price)
+                                                                      exit_city, coming_city, min_price, flight_code,
+                                                                      flight_date_)
                                     )
 
             select_diamante = ctk.CTkButton(master = diamante_clase,
@@ -91,7 +92,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                     text_color="black",
                                     text="Seleccionar",
                                     command=lambda: switch_to_window6(2, takeoff_hour, landing_hour, 
-                                                                      exit_city, coming_city, mid_price)
+                                                                      exit_city, coming_city, mid_price, flight_code,
+                                                                      flight_date_ )
                                     )
 
             select_premium = ctk.CTkButton(master = premium_clase,
@@ -105,7 +107,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                     text_color="black",
                                     text="Seleccionar",
                                     command=lambda: switch_to_window6(1, takeoff_hour, landing_hour, 
-                                                                      exit_city, coming_city, max_price)
+                                                                      exit_city, coming_city, max_price, flight_code,
+                                                                      flight_date_ )
                                     )
 
             close_window = ctk.CTkButton(master = flight_choice_frame,
@@ -346,7 +349,9 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                                                   CONSTANTES.takeoff_hour[i],
                                                                   CONSTANTES.landing_hour[i],
                                                                   CONSTANTES.exit_city[i],
-                                                                  CONSTANTES.coming_city[i])
+                                                                  CONSTANTES.coming_city[i],
+                                                                  CONSTANTES.flight_code[i],
+                                                                  CONSTANTES.flight_date_[i])
                                 )
 
         departure_hour_text = ctk.CTkLabel(master = button_flight, 
@@ -452,7 +457,10 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                                                   CONSTANTES.takeoff_hour[i],
                                                                   CONSTANTES.landing_hour[i],
                                                                   CONSTANTES.exit_city[i],
-                                                                  CONSTANTES.coming_city[i]))
+                                                                  CONSTANTES.coming_city[i],
+                                                                  CONSTANTES.flight_code[i],
+                                                                  CONSTANTES.flight_date_[i])
+                                                                )
 
                 departure_hour_text = ctk.CTkLabel(master = button_flight, 
                                         text = CONSTANTES.departure_hour[i],

@@ -6,7 +6,7 @@ import CONSTANTES
 import random
 
 def initialize_root7():
-    global email, entry_first_name, entry_last_name
+    global email
 
     root7 = ctk.CTk()
     root7.title("CONDOR-AIRLINE")
@@ -24,7 +24,10 @@ def initialize_root7():
     # root.iconbitmap("logo.ico")
 
     def switch_to_root3():
+        global first_name, last_name
         email_ = str(email.get())
+        first_name = entry_first_name.get()
+        last_name = entry_last_name.get()
         if entry_first_name.get() == '' or entry_last_name.get() == '' or genero.get() == '' or identification.get() == "" or type_identification.get() == '' or nationality.get() == '' or phone.get() == '' or email.get() == '':
             messagebox.showerror("ERROR", "DEBE LLENAR TODOS LOS CAMPOS")
             return
@@ -34,13 +37,20 @@ def initialize_root7():
         if email_.count("@") != 1:
             messagebox.showerror("ERROR", "CORREO INVALIDO")
             return
-        if email_.count(".") > 1:
+        if email_.count(".") != 1:
             messagebox.showerror("ERROR", "CORREO INVALIDO")
+            return
+        if identification.get().isdigit() == False:
+            messagebox.showerror("ERROR", "Ingrese solo números en el campo de identificación")
+            return
+        if phone.get().isdigit() == False:
+            messagebox.showerror("ERROR", "Ingrese solo números en el campo de teléfono")
             return
         else: 
             root7.destroy()
             import WINDOW_3
             WINDOW_3.initialize_root3()
+        
      
     def create_code(name, letters_numbers):
         name = str(entry_first_name.get()).capitalize()
@@ -62,7 +72,7 @@ def initialize_root7():
                 "Número de Identificación Tributario (NIT)", "Pasaporte"]
     value_id = ctk.StringVar()
     value_id.set(id_types[0])
-
+    
     #-------------------------------------FONTS----------------------------------------
 
     font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
@@ -226,6 +236,7 @@ def initialize_root7():
     #-------------------------BUTTONS-------------------------
 
     button_make_flight = ctk.CTkButton(master = make_flights_frame,
+
                             text = "Seleccionar Vuelo",
                             width = 250,
                             height = 50,
@@ -238,7 +249,8 @@ def initialize_root7():
                             text_color= "white",
                             command = switch_to_root3
                             )
-
+    
+    
     # continue_flight = ctk.CTkButton(master = make_flights_frame,
     #                         text = "Continuar",
     #                         width = 250,
