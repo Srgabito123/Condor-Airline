@@ -81,7 +81,7 @@ def initialize_root6(category):
                                 )
 
 
-    aluminio_zone_frame = ctk.CTkFrame(seatsbutton_frame, 
+    plata_zone_frame = ctk.CTkFrame(seatsbutton_frame, 
                                 width=300, 
                                 height=133,
                                 bg_color="beige",
@@ -109,7 +109,7 @@ def initialize_root6(category):
                                 border_width=3
                                 )
 
-    aluminio_frame = ctk.CTkFrame(root6, 
+    plata_frame = ctk.CTkFrame(root6, 
                                 width=150, 
                                 height=40,
                                 bg_color="#d7bb9f",
@@ -158,7 +158,7 @@ def initialize_root6(category):
                                 corner_radius=5
                                 )
 
-    aluminio_label = ctk.CTkLabel(aluminio_frame, 
+    plata_label = ctk.CTkLabel(plata_frame, 
                                 text="Plata", 
                                 font=("Poppins", 16, "bold"),
                                 text_color="white",
@@ -189,6 +189,17 @@ def initialize_root6(category):
     rows = 12
     columns = 6
 
+    def disable_all_buttons():
+        for row_buttons in seat_buttons:
+            for button in row_buttons:
+                button.configure(state="disabled")
+
+    def is_seat_selected(row, col):
+        print(f"Asiento seleccionado: Fila {row}, Columna {col}")
+
+        seat_buttons[row][col].configure(fg_color="yellow")  
+        disable_all_buttons()
+
     for row in range(rows):
         row_buttons = []
         for col in range(columns):
@@ -215,7 +226,7 @@ def initialize_root6(category):
                                     border_width=2)
                 button.grid(row=row-4, column=col, padx=14, pady=8, sticky="nsew")
             else:
-                button = ctk.CTkButton(aluminio_zone_frame,
+                button = ctk.CTkButton(plata_zone_frame,
                                     width=22,
                                     height=22,
                                     text="",
@@ -228,6 +239,8 @@ def initialize_root6(category):
             row_buttons.append(button)
         seat_buttons.append(row_buttons)
 
+    
+
     #------------------------------------POSICIONAMIENTO----------------------------------------
 
     outside_line.place(x=70, y = 25)
@@ -237,13 +250,14 @@ def initialize_root6(category):
     seatsbutton_frame.place(x=290, y = 80)
     premium_zone_frame.grid(row= 0, column = 0, padx = 10, pady = 10)
     diamond_zone_frame.grid(row = 1, column = 0)
-    aluminio_zone_frame.grid(row = 2, column = 0, padx = 10, pady = 10)
+    plata_zone_frame.grid(row = 2, column = 0, padx = 10, pady = 10)
     premium_frame.place(x=635, y=142)
     diamante_frame.place(x=635, y=280)
-    aluminio_frame.place(x=635, y=428)
+    plata_frame.place(x=635, y=428)
     premium_label.pack(fill="both", expand=True, pady=5, padx=5)
     diamante_label.pack(fill="both", expand=True, pady=5, padx=5)
-    aluminio_label.pack(fill="both", expand=True, pady=5, padx=5)
+    plata_label.pack(fill="both", expand=True, pady=5, padx=5)
     select_button.place(x=790, y=515)
 
     root6.mainloop()
+

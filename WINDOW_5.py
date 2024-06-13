@@ -6,9 +6,9 @@ import CONSTANTES
 import random
 import WINDOW_4
 
-def initialize_root5(category):
+def initialize_root5(category, num):
     global email
-
+    print(num)
     root5 = ctk.CTk()
     root5.title("CONDOR-AIRLINE")
     root5._set_appearance_mode("light")
@@ -23,22 +23,14 @@ def initialize_root5(category):
     root.resizable(0, 0)
     root.config(bg = "light pink")
 
-    def switch_to_root6(category):
+    def switch_to_root6(category, num):
         global first_name, last_name, code, last_name_
-
-        name = str(entry_first_name.get()).capitalize()
-        name = name[0]
-        letters_numbers = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
-        code = name + "-"
-        for i in range(6):
-            code += str(random.choice(letters_numbers))
-
-        last_name_ = str(entry_last_name.get()).upper()
         
-
         email_ = str(email.get())
         first_name = entry_first_name.get()
         last_name = entry_last_name.get()
+
+        last_name_ = str(entry_last_name.get()).upper()
 
         if entry_first_name.get() == '' or entry_last_name.get() == '' or genero.get() == '' or identification.get() == "" or type_identification.get() == '' or nationality.get() == '' or phone.get() == '' or email.get() == '':
             messagebox.showerror("ERROR", "DEBE LLENAR TODOS LOS CAMPOS")
@@ -63,10 +55,24 @@ def initialize_root5(category):
         if not phone.get().isdigit():
             messagebox.showerror("ERROR", "Ingrese solo números en el campo de teléfono")
             return
-        else:
+        
+        name = str(entry_first_name.get()).capitalize()
+        name = name[0]
+        letters_numbers = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
+        code = name + "-"
+        for i in range(6):
+            code += str(random.choice(letters_numbers))
+
+        if num == 2 or num == 1:
             root5.destroy()
             import WINDOW_6
             WINDOW_6.initialize_root6(category)
+        elif num == 3:
+            root5.destroy()
+            import WINDOW_7
+            WINDOW_7.initialize_root7(category)
+        
+        
         
  
  
@@ -244,7 +250,7 @@ def initialize_root5(category):
 
     button_make_flight = ctk.CTkButton(master = make_flights_frame,
 
-                            text = "Seleccionar Vuelo",
+                            text = "Seleccionar Asiento",
                             width = 250,
                             height = 50,
                             corner_radius = 10,
@@ -254,23 +260,23 @@ def initialize_root5(category):
                             border_width = 2,
                             hover_color= "light blue",
                             text_color= "white",
-                            command = lambda: switch_to_root6(category)
+                            command = lambda: switch_to_root6(category, num)
                             )
     
     
-    # continue_flight = ctk.CTkButton(master = make_flights_frame,
-    #                         text = "Continuar",
-    #                         width = 250,
-    #                         height = 50,
-    #                         corner_radius = 10,
-    #                         fg_color = "#a06553",
-    #                         font = font_1,
-    #                         border_color = "light pink",
-    #                         border_width = 2,
-    #                         hover_color= "light blue",
-    #                         text_color= "white",
-    #                         command = switch_to_root8
-    #                         )
+    continue_flight = ctk.CTkButton(master = make_flights_frame,
+                            text = "Continuar",
+                            width = 250,
+                            height = 50,
+                            corner_radius = 10,
+                            fg_color = "#a06553",
+                            font = font_1,
+                            border_color = "#a06553",
+                            border_width = 2,
+                            hover_color= "light blue",
+                            text_color= "white",
+                            command = lambda: switch_to_root6(category, num)
+                            )
 
     #-------------------------POSICIONAMIENTO-------------------------
 
@@ -287,7 +293,13 @@ def initialize_root5(category):
     frame_type_id.place(relx = 0.2, rely = 0.5, anchor = "center")
     phone.place(relx = 0.5, rely = 0.7, anchor = "center")
     email.place(relx = 0.8, rely = 0.7, anchor = "center")
-    button_make_flight.place(relx = 0.2, rely = 0.7, anchor = "center")
-    # continue_flight.place(relx = 0.5, rely = 0.9, anchor = "center")
+
+    if num == 3:
+        continue_flight.place(relx = 0.2, rely = 0.7, anchor = "center")
+    else:
+        button_make_flight.place(relx = 0.2, rely = 0.7, anchor = "center")
 
     root5.mainloop()
+
+# if __name__ == "__main__":
+#     initialize_root5("Vuelos", 2)

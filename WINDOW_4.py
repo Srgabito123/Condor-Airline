@@ -21,10 +21,10 @@ def initialize_root4(num, takeoff_hour, landing_hour, exit_city, coming_city, pr
    root4.config(bg = "#d7bb9f")
    root4.iconbitmap("images/ICONO.ico")
    
-   def switch_to_root5(category):
+   def switch_to_root5(category, num):
       root4.destroy()
       import WINDOW_5
-      WINDOW_5.initialize_root5(category) 
+      WINDOW_5.initialize_root5(category, num) 
    #---------------------------VARIABLES---------------------------
 
    departure_time = takeoff_hour
@@ -69,7 +69,7 @@ def initialize_root4(num, takeoff_hour, landing_hour, exit_city, coming_city, pr
                                  border_width = 1.5,
                                  hover_color = "beige",
                                  border_color = "#a06553",
-                                 command= lambda: switch_to_root5(category)
+                                 command= lambda: switch_to_root5(category, num)
                                  )
    button_flight = ctk.CTkButton(master = principal_frame,    
                                 width = 890, 
