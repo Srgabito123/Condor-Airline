@@ -1,15 +1,39 @@
 import customtkinter as ctk
 from PIL import Image
+import WINDOW_5
+from tkinter import messagebox as mb
 
-def initialize_root8():
+def initialize_root9():
 
     #------------------------------FUNCTIONS------------------------------------------
 
     def check_in():
-        text_box_1.delete(0, ctk.END)
-        text_box_2.delete(0, ctk.END)
+
+        code = WINDOW_5.code
+        last_name = WINDOW_5.last_name_
+
+        entry_code = text_box_1.get()
+        entry_last_name = text_box_2.get()
+        entry_last_name = entry_last_name.upper()
+
+        if entry_code != code and entry_last_name != last_name:
+            mb.showerror("Error", "Código y apellido incorrectos")
+            return
+        if entry_code == code and entry_last_name == last_name:
+            mb.showinfo("Check-In", "Check-In realizado con éxito")
+            root9.destroy()
+        if entry_code != code:
+            mb.showerror("Error", "Código incorrecto")
+            return
+        if entry_last_name != last_name:
+            mb.showerror("Error", "Apellido incorrecto")
+            return
         
-    #-------------------------------VENTANA 1------------------------------------------
+    #-------------------------------VARIABLES-----------------------------------------
+
+    
+
+    #-------------------------------WINDOW 1------------------------------------------
 
     root9 = ctk.CTk()
     root9.resizable(0, 0)
@@ -32,7 +56,7 @@ def initialize_root8():
     font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
     font_2 = ctk.CTkFont(family="Cooper Black", size=12)
 
-    #-------------------------------------IMÁGEN--------------------------------------
+    #-------------------------------------IMAGE--------------------------------------
     
     image_1 = ctk.CTkImage(light_image=Image.open("images/LOGO AEROLINEA.png"),
                         dark_image=Image.open("images/LOGO AEROLINEA.png"),
@@ -45,7 +69,7 @@ def initialize_root8():
                                 bg_color="#d7bb9f"
                                 )
 
-    #------------------------------------TÍTULOS----------------------------------------
+    #------------------------------------LABELS----------------------------------------
 
     title_1 = ctk.CTkLabel(root9, 
                         text="Código", 
@@ -69,7 +93,7 @@ def initialize_root8():
                         corner_radius=10
                         )
 
-    #------------------------------------CAJAS DE TEXTO----------------------------------------
+    #------------------------------------TEXT BOXES----------------------------------------
 
     text_box_1 = ctk.CTkEntry(root9, 
                             width=250, 

@@ -6,7 +6,7 @@ import CONSTANTES
 import random
 import WINDOW_4
 
-def initialize_root5():
+def initialize_root5(category):
     global email
 
     root5 = ctk.CTk()
@@ -22,45 +22,52 @@ def initialize_root5():
     root.geometry("1000x600")
     root.resizable(0, 0)
     root.config(bg = "light pink")
-    # root.iconbitmap("logo.ico")
 
-    def switch_to_root6():
-        global first_name, last_name
+    def switch_to_root6(category):
+        global first_name, last_name, code, last_name_
+
+        name = str(entry_first_name.get()).capitalize()
+        name = name[0]
+        letters_numbers = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
+        code = name + "-"
+        for i in range(6):
+            code += str(random.choice(letters_numbers))
+
+        last_name_ = str(entry_last_name.get()).upper()
+        
+
         email_ = str(email.get())
         first_name = entry_first_name.get()
         last_name = entry_last_name.get()
+
         if entry_first_name.get() == '' or entry_last_name.get() == '' or genero.get() == '' or identification.get() == "" or type_identification.get() == '' or nationality.get() == '' or phone.get() == '' or email.get() == '':
             messagebox.showerror("ERROR", "DEBE LLENAR TODOS LOS CAMPOS")
             return
         if " " in email_:
-            messagebox.showerror("ERROR", "CORREO INVALIDO")
-            return
+                messagebox.showerror("ERROR", "CORREO INVALIDO")
+                return
+
         if email_.count("@") != 1:
             messagebox.showerror("ERROR", "CORREO INVALIDO")
             return
-        if email_.count(".") != 1:
+
+        username, domain = email_.split("@")
+
+        if "." not in domain:
             messagebox.showerror("ERROR", "CORREO INVALIDO")
             return
-        if identification.get().isdigit() == False:
+
+        if not identification.get().isdigit():
             messagebox.showerror("ERROR", "Ingrese solo números en el campo de identificación")
             return
-        if phone.get().isdigit() == False:
+        if not phone.get().isdigit():
             messagebox.showerror("ERROR", "Ingrese solo números en el campo de teléfono")
             return
         else:
             root5.destroy()
             import WINDOW_6
-            WINDOW_6.initialize_root6()
+            WINDOW_6.initialize_root6(category)
         
-     
-    def create_code(name, letters_numbers):
-        name = str(entry_first_name.get()).capitalize()
-        letters_numbers = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
-        code = name + "-"
-        for i in range(6):
-            code += str(random.choice(letters_numbers))
-            create_code(name[0], letters_numbers)
-        #print(code)
  
  
     #----------------------------VARIABLES OPTIPON MENUS-------------------------------
@@ -247,7 +254,7 @@ def initialize_root5():
                             border_width = 2,
                             hover_color= "light blue",
                             text_color= "white",
-                            command = switch_to_root6
+                            command = lambda: switch_to_root6(category)
                             )
     
     

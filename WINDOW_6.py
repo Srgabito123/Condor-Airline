@@ -1,12 +1,12 @@
 import customtkinter as ctk
 
-def initialize_root6():
+def initialize_root6(category):
     #--------------------------------------FUNCIONES---------------------------------------
 
-    def switch_to_root7(): 
+    def switch_to_root7(category): 
         root6.destroy()
         import WINDOW_7
-        WINDOW_7.initialize_root7()
+        WINDOW_7.initialize_root7(category)
 
     def is_seat_selected(row, col):
         seat = (row, col)
@@ -181,7 +181,7 @@ def initialize_root6():
                                     border_width=3,
                                     border_color="beige",
                                     hover_color="lightblue",
-                                    command=switch_to_root7
+                                    command=lambda: switch_to_root7(category)
                                     )
 
     seat_buttons = []

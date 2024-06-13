@@ -30,6 +30,7 @@ root1.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
 root1.config(background="#d7bb9f")
 root1.title("CONDOR-AIRLINES")
 root1.iconbitmap("images/ICONO.ico")
+
 #-------------------------fonts-------------------------
 
 font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")

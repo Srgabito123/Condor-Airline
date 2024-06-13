@@ -12,7 +12,11 @@ def initialize_root8():
     root8.resizable(0, 0)
     root8.config(bg = "light pink")
     
-
+    #---------------------------FUNCTIONS---------------------------
+    def switch_to_root9():
+        root8.destroy()
+        import WINDOW_9
+        WINDOW_9.initialize_root9()
     #---------------------------FONTS---------------------------
 
     font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
@@ -157,9 +161,26 @@ def initialize_root8():
                             )
     
     checkin = ctk.CTkLabel(master = frame_1,
-                            text = "123456",
+                            text = WINDOW_5.code,
                             font = (font_1, 22),
                             text_color = "black",
+                            )
+
+    #------------------------BUTTONS------------------------
+
+    go_check_in = ctk.CTkButton(master = root8,
+                            text = "Continuar",
+                            width = 250,
+                            height = 50,
+                            corner_radius = 10,
+                            fg_color = "#a06553",
+                            bg_color= "#d7bb9f",
+                            font = font_1,
+                            border_color = "beige",
+                            border_width = 2,
+                            hover_color= "light blue",
+                            text_color= "white",
+                            command = switch_to_root9
                             )
 
     #------------------------positioning------------------------
@@ -185,6 +206,7 @@ def initialize_root8():
     vuelo.place(relx=0.43, rely=0.9, anchor="center")
     codigo_vuelo.place(relx=0.7, rely=0.9, anchor="center")
     checkin.place(relx=0.89, rely=0.9, anchor="center")
+    go_check_in.place(relx=0.5, rely=0.9, anchor="center")
 
 
 

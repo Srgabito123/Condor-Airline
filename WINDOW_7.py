@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 import WINDOW_4
 #ventana 8
-def initialize_root7():
+def initialize_root7(category):
      
      root7 = ctk.CTk()
      root7.title("CONDOR-AIRLINES")
@@ -48,7 +48,7 @@ def initialize_root7():
      going = f"Ida: {departure_place} - {arrival_place}"
      price = WINDOW_4.price_f
      arrow = "---------------------->"
-     category = "Aluminio"
+     category_ = category
      font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
      month = ["Enero", 
                "Febrero", 
@@ -290,7 +290,7 @@ def initialize_root7():
                               bg_color = "beige"
                               )
      text_category = ctk.CTkLabel(master = option1,
-                              text = category,
+                              text = category_,
                               fg_color = "#a06553",
                               text_color = "white",
                               font = (font_1, 13),
