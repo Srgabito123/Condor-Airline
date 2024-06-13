@@ -13,7 +13,6 @@ for line in file:
     lista = [element.strip() for element in lista]
     matriz.append(lista)
 
-print(tb.tabulate(matriz))
 
 def recive_data(origin, destiny, date):
     global flights, departure_hour, arrival_hour, price, all_dates, mid_price, max_price, min_price, takeoff_hour, landing_hour, exit_city, coming_city, flight_code, flight_date_
@@ -67,8 +66,6 @@ departure_date = set(matriz[i][1] for i in range(1, len(matriz)))
 origin_city = list(origin_city)
 destiny_city = list(destiny_city)
 departure_date = list(departure_date)
-
-# print(firts_name, last_name)
 
 file.close()
 
