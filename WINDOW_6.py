@@ -15,7 +15,7 @@ def initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, pr
    price_f = price
    flight_code_f = flight_code
    flight_date_f = flight_date_
-
+   #aa
    root6 = ctk.CTk()
    root6.title("CONDOR-AIRLINES")
    root6._set_appearance_mode("light")
