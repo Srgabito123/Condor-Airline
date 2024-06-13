@@ -1,205 +1,249 @@
 import customtkinter as ctk
-import CONSTANTES
 
+def initialize_root6():
+    #--------------------------------------FUNCIONES---------------------------------------
 
+    def switch_to_root7(): 
+        root6.destroy()
+        import WINDOW_7
+        WINDOW_7.initialize_root7()
 
+    def is_seat_selected(row, col):
+        seat = (row, col)
+        button = seat_buttons[row][col]
+        if seat in selected_seats:
+            selected_seats.remove(seat)
+            button.configure(fg_color="beige")
+        else:
+            selected_seats.add(seat)
+            button.configure(fg_color="#a06553")
 
-def initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, price, flight_code, flight_date_):
-   global departure_time, arrival_time, departure_city, arrival_city, takeoff_hour_f, landing_hour_f, exit_city_f, coming_city_f, price_f, flight_code_f, flight_date_f
-   #-------------------------------VENTANA 6-------------------------
+    #--------------------------------------VENTANA3----------------------------------------
 
-   takeoff_hour_f = takeoff_hour
-   landing_hour_f = landing_hour
-   exit_city_f = exit_city
-   coming_city_f = coming_city
-   price_f = price
-   flight_code_f = flight_code
-   flight_date_f = flight_date_
-   #aa
-   root6 = ctk.CTk()
-   root6.title("CONDOR-AIRLINES")
-   root6._set_appearance_mode("light")
-   root6.geometry("1000x600")
-   root6.resizable(0,0)
-   root6.config(bg = "#d7bb9f")
-   root6.iconbitmap("images/ICONO.ico")
-   
-   def switch_to_root7():
-      root6.destroy()
-      import WINDOW_7
-      WINDOW_7.initialize_root7() 
-   #---------------------------VARIABLES---------------------------
+    root6 = ctk.CTk()
+    root6.resizable(0, 0)
 
-   departure_time = takeoff_hour
-   arrival_time = landing_hour
-   departure_city = exit_city
-   arrival_city = coming_city
-   price = price
+    screen_width = root6.winfo_screenwidth()
+    screen_height = root6.winfo_screenheight()
+    window_width = 1000
+    window_height = 600
 
-   category = ""
-   if num == 1:
-      category = "Premium"
-   elif num == 2:
-      category = "Diamante"
-   elif num == 3:
-      category = "Plata"
+    center_x = int(screen_width / 2 - window_width / 2)
+    center_y = int(screen_height / 2 - window_height / 2)
 
+    root6.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
+    root6.config(background="#d7bb9f")
+    root6.title("CONDOR-AIRLINES")
+    root6.iconbitmap("images/ICONO.ico")
 
+    #---------------------------------------FRAMES-----------------------------------------
 
-   
-   ida = f"Ida: {departure_city} - {arrival_city}"
-   arrow = "-------------------------------------->"
-   font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
-   principal_frame = ctk.CTkFrame(master = root6,
-                              width = 1000,
-                              height = 600,
-                              corner_radius = 30,
-                              fg_color = "#d7bb9f",
-                              border_color = "#d7bb9f",
-                              border_width = 2,
-                              bg_color = "#d7bb9f"
-                              )
-   #---------------------------BOTONES---------------------------
-   select_button = ctk.CTkButton(master = root6,
-                                 text = "SELECCIONAR",
-                                 bg_color="#d7bb9f", 
-                                 fg_color="#a06553",
-                                 text_color = "white",
-                                 font = (font_1, 16, "bold"),
-                                 width = 35,
-                                 height = 35,
-                                 corner_radius = 10,
-                                 border_width = 1.5,
-                                 hover_color = "beige",
-                                 border_color = "#a06553",
-                                 command= switch_to_root7
-                                 )
-   button_flight = ctk.CTkButton(master = principal_frame,    
-                                width = 890, 
-                                height = 160, 
-                                corner_radius = 50,
-                                fg_color = "beige",
-                                hover_color = "beige",
-                                text = " ",
-                                border_color= "black",
-                                border_width= 1.5,
-                                )
-   
-   text_reservation = ctk.CTkLabel(master = root6,
-                           text = f"Total reservation: COP ${price}",
-                           fg_color = "#d7bb9f",
-                           text_color = "black",
-                           font = (font_1, 20),
-                           width = 0.3,
-                           height = 0.3,
-                           bg_color = "#d7bb9f",
-                           corner_radius = 10
-                           )
-
-   departure_hour_text = ctk.CTkLabel(master = button_flight, 
-                                text = departure_time,
-                                fg_color = "transparent",
-                                bg_color= "beige",
-                                text_color = "black",
-                                font = font_1,
-                                width = 0.1,
-                                height = 0.3
+    outside_line = ctk.CTkFrame(root6, 
+                                width=860, 
+                                height=515,
+                                bg_color="#d7bb9f",
+                                fg_color="#d7bb9f",
+                                corner_radius=20,
+                                border_color="beige",
+                                border_width=4
                                 )
 
-   arrival_hour_text = ctk.CTkLabel(master = button_flight, 
-                                text = arrival_time,
-                                fg_color = "beige",
-                                text_color = "black",
-                                font = font_1,
-                                width = 0.1,
-                                height = 0.3,
-                                corner_radius = 10,
-                                )
-
-   departure_place_text = ctk.CTkLabel(master = button_flight, 
-                                text = departure_city,
-                                fg_color = "Beige",
-                                text_color = "black",
-                                font = font_1,
-                                width = 0.1,
-                                height = 0.3,
-                                corner_radius = 10,
-                                )
-
-   arrival_place_text = ctk.CTkLabel(master = button_flight, 
-                                text = arrival_city,
-                                fg_color = "Beige",
-                                text_color = "black",
-                                font = font_1,
-                                width = 0.1,
-                                height = 0.3,
-                                corner_radius = 10,
-                                )
-
-   text_desde = ctk.CTkLabel(master = button_flight,
-                                text = """DESDE:
-
-                                    COP $""",
-                                fg_color = "transparent",
-                                text_color = "black",
-                                font = font_1,
-                                width = 0.1,
-                                height = 0.3,
-                                corner_radius = 10,
-                                )
-
-   text_precio = ctk.CTkLabel(master = button_flight,
-                                text = price,
-                                fg_color = "beige",
-                                text_color = "black",
-                                font = font_1,
-                                width = 0.1,
-                                height = 0.3,
-                                corner_radius = 10,
-                                )
-
-   text_flechita = ctk.CTkLabel(master = button_flight,
-                                text = arrow,
-                                fg_color = "beige",
-                                text_color = "black",
-                                font = ("roboto", 20),
-                                width = 0.3,
-                                height = 0.3,
-                                )
-        
-   button_flight.pack(padx=5, pady=10, expand= True, anchor = "center")
-   departure_hour_text.place(relx = 0.1, rely = 0.4, anchor = "center")
-   departure_place_text.place(relx = 0.1, rely = 0.54, anchor = "center")
-   arrival_hour_text.place(relx = 0.5, rely = 0.4, anchor = "center")
-   arrival_place_text.place(relx = 0.5, rely = 0.54, anchor = "center")
-   text_desde.place(relx = 0.7, rely = 0.4, anchor = "center")
-   text_precio.place(relx = 0.89, rely = 0.53, anchor = "center")
-   text_flechita.place(relx = 0.3, rely = 0.45, anchor = "center")
-   #---------------------------TEXTOS---------------------------
-   text_category = ctk.CTkLabel(master = button_flight,
-                           text = category,
-                           fg_color = "#a06553",
-                           text_color = "white",
-                           font = (font_1, 14),
-                           width = 0.1,
-                           height = 0.3,
-                           corner_radius = 10,
-                           bg_color = "transparent"
-                           )
-   text_viaje = ctk.CTkLabel(master = root6, 
-                            text = ida, 
-                            fg_color = "beige", 
-                            width = 0.2, 
-                            height = 0.065, 
-                            text_color = "black", 
-                            font = font_1, 
-                            corner_radius = 10, 
-                            bg_color = "#d7bb9f",
+    text_frame = ctk.CTkFrame(root6, 
+                            width=230, 
+                            height=40,
+                            bg_color="#d7bb9f",
+                            fg_color="beige",
+                            corner_radius=25
                             )
-   #---------------------------POSICIONAMIENTO-----------------------
-   principal_frame.place(relx = 0.5, rely = 0.3, anchor = "center")
-   text_category.place(x = 710, y = 30, relwidth = 0.1, relheight = 0.25)
-   select_button.place(relx = 0.83, rely = 0.825, anchor = "center")
-   text_viaje.place(x = 6, y = 8, relwidth = 0.3, relheight = 0.065)
-   text_reservation.place(x = 50, y = 480, relwidth = 0.35, relheight = 0.07)
-   root6.mainloop()
+
+    seatsbutton_frame = ctk.CTkFrame(root6,
+                                width=320, 
+                                height=420,
+                                bg_color="#d7bb9f",
+                                fg_color="beige",
+                                corner_radius=20
+                                )
+
+    premium_zone_frame = ctk.CTkFrame(seatsbutton_frame, 
+                                width=300, 
+                                height=133,
+                                bg_color="beige",
+                                fg_color="#ddbdb2",
+                                corner_radius=4
+                                )
+
+    diamond_zone_frame = ctk.CTkFrame(seatsbutton_frame, 
+                                width=300, 
+                                height=133,
+                                bg_color="beige",
+                                fg_color="#d2a798",
+                                corner_radius=4
+                                )
+
+
+    aluminio_zone_frame = ctk.CTkFrame(seatsbutton_frame, 
+                                width=300, 
+                                height=133,
+                                bg_color="beige",
+                                fg_color="#c7917e",
+                                corner_radius=4
+                                )
+
+    premium_frame = ctk.CTkFrame(root6, 
+                                width=150, 
+                                height=40,
+                                bg_color="#d7bb9f",
+                                fg_color="#ddbdb2",
+                                corner_radius=5,
+                                border_color="#b38371",
+                                border_width=3
+                                )
+
+    diamante_frame = ctk.CTkFrame(root6, 
+                                width=150, 
+                                height=40,
+                                bg_color="#d7bb9f",
+                                fg_color="#d2a798",
+                                corner_radius=5,
+                                border_color="#b38371",
+                                border_width=3
+                                )
+
+    aluminio_frame = ctk.CTkFrame(root6, 
+                                width=150, 
+                                height=40,
+                                bg_color="#d7bb9f",
+                                fg_color="#c7917e",
+                                corner_radius=5,
+                                border_color="#b38371",
+                                border_width=3
+                                )
+
+    #---------------------------------------LABELS---------------------------------------
+
+    letter_seats_text = ctk.CTkLabel(root6, 
+                                text=" A         B          C          D          E          F  ", 
+                                font=("Poppins", 16),
+                                text_color="brown",
+                                bg_color="#d7bb9f",
+                                fg_color="beige",
+                                width = 260,
+                                corner_radius=5
+                                )
+
+    seats_text = ctk.CTkLabel(text_frame, 
+                                text="SELECCIÓN DE ASIENTOS", 
+                                font=("Poppins", 18),
+                                text_color="brown",
+                                bg_color="beige",
+                                fg_color="beige",
+                                corner_radius=15
+                                )
+
+    premium_label = ctk.CTkLabel(premium_frame, 
+                                text="Premium", 
+                                font=("Poppins", 16, "bold"),
+                                text_color="white",
+                                bg_color="#d7bb9f",
+                                fg_color="#ddbdb2",
+                                corner_radius=5
+                                )
+
+    diamante_label = ctk.CTkLabel(diamante_frame, 
+                                text="Diamante", 
+                                font=("Poppins", 16, "bold"),
+                                text_color="white",
+                                bg_color="#d7bb9f",
+                                fg_color="#d2a798",
+                                corner_radius=5
+                                )
+
+    aluminio_label = ctk.CTkLabel(aluminio_frame, 
+                                text="Plata", 
+                                font=("Poppins", 16, "bold"),
+                                text_color="white",
+                                bg_color="#d7bb9f",
+                                fg_color="#c7917e",
+                                corner_radius=5
+                                )
+
+    #---------------------------------------BOTONES---------------------------------------
+
+    select_button = ctk.CTkButton(root6, 
+                                    text="Seleccionar",
+                                    text_color="white", 
+                                    width=150, 
+                                    height=40,
+                                    font=("Poppins", 16, "bold"),
+                                    bg_color="#d7bb9f",
+                                    fg_color="#a06553",
+                                    cursor="hand2",
+                                    border_width=3,
+                                    border_color="beige",
+                                    hover_color="lightblue",
+                                    command=switch_to_root7
+                                    )
+
+    seat_buttons = []
+    selected_seats = set()
+    rows = 12
+    columns = 6
+
+    for row in range(rows):
+        row_buttons = []
+        for col in range(columns):
+            if row < 4:
+                button = ctk.CTkButton(premium_zone_frame,
+                                    width=22,
+                                    height=22,
+                                    text="",
+                                    command=lambda row=row, col=col: is_seat_selected(row, col),
+                                    fg_color="beige",
+                                    hover_color="gray",
+                                    border_color="#a06553",
+                                    border_width=2)
+                button.grid(row=row, column=col, padx=14, pady=8, sticky="nsew")
+            elif row < 8:
+                button = ctk.CTkButton(diamond_zone_frame,
+                                    width=22,
+                                    height=22,
+                                    text="",
+                                    command=lambda row=row, col=col: is_seat_selected(row, col),
+                                    fg_color="beige",
+                                    hover_color="gray",
+                                    border_color="#a06553",
+                                    border_width=2)
+                button.grid(row=row-4, column=col, padx=14, pady=8, sticky="nsew")
+            else:
+                button = ctk.CTkButton(aluminio_zone_frame,
+                                    width=22,
+                                    height=22,
+                                    text="",
+                                    command=lambda row=row, col=col: is_seat_selected(row, col),
+                                    fg_color="#a06553",
+                                    hover_color="#a06553",
+                                    border_color="#a06553",
+                                    border_width=2)
+                button.grid(row=row-8, column=col, padx=14, pady=8, sticky="nsew")
+            row_buttons.append(button)
+        seat_buttons.append(row_buttons)
+
+    #------------------------------------POSICIONAMIENTO----------------------------------------
+
+    outside_line.place(x=70, y = 25)
+    text_frame.place(x=-20, y = 15)
+    letter_seats_text.place(x=308, y = 60)
+    seats_text.pack(fill="both", expand=True, pady = 10, padx = 10)
+    seatsbutton_frame.place(x=290, y = 80)
+    premium_zone_frame.grid(row= 0, column = 0, padx = 10, pady = 10)
+    diamond_zone_frame.grid(row = 1, column = 0)
+    aluminio_zone_frame.grid(row = 2, column = 0, padx = 10, pady = 10)
+    premium_frame.place(x=635, y=142)
+    diamante_frame.place(x=635, y=280)
+    aluminio_frame.place(x=635, y=428)
+    premium_label.pack(fill="both", expand=True, pady=5, padx=5)
+    diamante_label.pack(fill="both", expand=True, pady=5, padx=5)
+    aluminio_label.pack(fill="both", expand=True, pady=5, padx=5)
+    select_button.place(x=790, y=515)
+
+    root6.mainloop()

@@ -1,191 +1,121 @@
-from tkinter import *
 import customtkinter as ctk
-import WINDOW_7 
-import WINDOW_6
+from PIL import Image
 
-def initialize_root9(): 
-    
+def initialize_root8():
+
+    #------------------------------FUNCTIONS------------------------------------------
+
+    def check_in():
+        text_box_1.delete(0, ctk.END)
+        text_box_2.delete(0, ctk.END)
+        
+    #-------------------------------VENTANA 1------------------------------------------
+
     root9 = ctk.CTk()
-    root9.title("CONDOR-AIRLINES")
-    root9._set_appearance_mode("light")
-    root9.geometry("1000x600")
     root9.resizable(0, 0)
-    root9.config(bg = "light pink")
-    
 
-    #---------------------------FONTS---------------------------
+    screen_width = root9.winfo_screenwidth()
+    screen_height = root9.winfo_screenheight()
+    window_width = 1000
+    window_height = 600
+
+    center_x = int(screen_width / 2 - window_width / 2)
+    center_y = int(screen_height / 2 - window_height / 2)
+
+    root9.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
+    root9.config(background="#d7bb9f")
+    root9.title("CONDOR-AIRLINES")
+    root9.iconbitmap("images/ICONO.ico")
+
+    #----------------------------------------FONTS-------------------------------------
 
     font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
     font_2 = ctk.CTkFont(family="Cooper Black", size=12)
-    name_ = WINDOW_7.first_name
-    last_ = WINDOW_7.last_name
+
+    #-------------------------------------IMÁGEN--------------------------------------
     
+    image_1 = ctk.CTkImage(light_image=Image.open("images/LOGO AEROLINEA.png"),
+                        dark_image=Image.open("images/LOGO AEROLINEA.png"),
+                        size = (340, 340)
+                        )
 
-    #---------------------------FRAMES---------------------------
+    image1_label = ctk.CTkLabel(root9, 
+                                image=image_1, 
+                                text = "", 
+                                bg_color="#d7bb9f"
+                                )
 
-    frame_principal = ctk.CTkFrame(master = root9,
-                            width = 1000,
-                            height = 600,
-                            corner_radius = 10,
-                            fg_color = "#d7bb9f",
-                            border_color = "white",
-                            border_width = 2,
-                            bg_color = "transparent"
+    #------------------------------------TÍTULOS----------------------------------------
+
+    title_1 = ctk.CTkLabel(root9, 
+                        text="Código", 
+                        width=150, 
+                        height=40, 
+                        font=("Helvetica", 18, "bold"),
+                        text_color="brown",
+                        bg_color="#d7bb9f",
+                        fg_color="beige",
+                        corner_radius=10
+                        )
+
+    title_2 = ctk.CTkLabel(root9, 
+                        text="Apellido", 
+                        width=150, 
+                        height=40, 
+                        font=("Helvetica", 18, "bold"),
+                        text_color="brown",
+                        bg_color="#d7bb9f",
+                        fg_color="beige",
+                        corner_radius=10
+                        )
+
+    #------------------------------------CAJAS DE TEXTO----------------------------------------
+
+    text_box_1 = ctk.CTkEntry(root9, 
+                            width=250, 
+                            height=50, 
+                            bg_color="#d7bb9f", 
+                            fg_color="beige",
+                            font = font_1,
+                            border_width=3,
+                            border_color="#a06553"
                             )
 
-    frame_1 = ctk.CTkFrame(master = frame_principal,
-                            width = 900,
-                            height = 400,
-                            corner_radius = 0,
-                            fg_color = "white",
-                            border_color = "white",
-                            border_width = 2,
-                            bg_color = "transparent"
+    text_box_2 = ctk.CTkEntry(root9, 
+                            width=250, 
+                            height=50,
+                            font = font_1, 
+                            bg_color="#d7bb9f",
+                            fg_color="beige",
+                            border_width=3,
+                            border_color="#a06553"
                             )
 
-    frame_pase = ctk.CTkFrame(master = frame_1,
-                            width = 1000,
-                            height = 70,
-                            corner_radius = 0,
-                            fg_color = "#a06553",
-                            border_color = "white",
-                            border_width = 1.5,
+    #------------------------------------BOTON----------------------------------------
+
+    button_1 = ctk.CTkButton(root9, 
+                            text="Realizar Check-In",
+                            text_color="white", 
+                            width=200, 
+                            height=50,
+                            font=("Helvetica", 18, "bold"),
+                            bg_color="#d7bb9f",
+                            fg_color="#a06553",
+                            cursor="hand2",
+                            hover_color="lightblue",
+                            border_width=3,
+                            border_color="#a06553",
+                            corner_radius=10,
+                            command = check_in
                             )
 
-    frame_cheap = ctk.CTkFrame(master = frame_1,
-                            width = 250,
-                            height = 400,
-                            corner_radius = 0,
-                            fg_color = "beige",
-                            border_color = "white",
-                            border_width = 1.5,
-                            )
+    #------------------------------------POSICIONAMIENTO----------------------------------------
 
-
-    #------------------------L A B E L S------------------------
-
-    label_aerolinea = ctk.CTkLabel(master = frame_cheap,
-                            text = """CONDOR 
-
-    AIRLINES""",
-                            font = (font_1, 25),
-                            text_color = "black",
-                            )
-
-    pase_abordaje = ctk.CTkLabel(master = frame_pase,
-                            text = "PASE DE ABORDAJE",
-                            font = (font_1, 20),
-                            text_color = "black",
-                            )
-
-    nombre_pasajero = ctk.CTkLabel(master = frame_1,
-                            text = "Nombre del pasajero:",
-                            font = (font_1, 18),
-                            text_color = "black",
-                            )
-
-    nombre = ctk.CTkLabel(master = frame_1,
-                            text = f"{name_} {last_}",
-                            font = (font_1, 18),
-                            text_color = "black",
-                            )
-
-    origen_pasajero = ctk.CTkLabel(master = frame_1,
-                            text = "Origen:",
-                            font = (font_1, 18),
-                            text_color = "black",
-                            )
-
-    origen = ctk.CTkLabel(master = frame_1,
-                            text = WINDOW_6.exit_city_f,
-                            font = (font_1, 18),
-                            text_color = "black",
-                            )
-
-    destino_pasajero = ctk.CTkLabel(master = frame_1,
-                            text = "Destino:",
-                            font = (font_1, 18),
-                            text_color = "black",
-                            )
-
-    destino = ctk.CTkLabel(master = frame_1,
-                            text = WINDOW_6.coming_city_f,
-                            font = (font_1, 18),
-                            text_color = "black",
-                            )
-
-    fecha_vuelo = ctk.CTkLabel(master = frame_1,
-                            text = "Fecha:",
-                            font = (font_1, 18),
-                            text_color = "black",
-                            )
-
-    fecha = ctk.CTkLabel(master = frame_1,
-                            text = WINDOW_6.flight_date_f,
-                            font = (font_1, 18),
-                            text_color = "black",
-                            )
-
-    hora_vuelo = ctk.CTkLabel(master = frame_1,
-                            text = "Hora:",
-                            font = (font_1, 18),
-                            text_color = "black",
-                            )
-
-    hora = ctk.CTkLabel(master = frame_1,
-                            text = WINDOW_6.takeoff_hour_f,
-                            font = (font_1, 18),
-                            text_color = "black",
-                            )
-
-    numero_vuelo = ctk.CTkLabel(master = frame_1,
-                            text = "Vuelo:",
-                            font = (font_1, 22),
-                            text_color = "black",
-                            )
-
-    vuelo = ctk.CTkLabel(master = frame_1,
-                            text = WINDOW_6.flight_code_f,
-                            font = (font_1, 22),
-                            text_color = "black",
-                            )
-
-    codigo_vuelo = ctk.CTkLabel(master = frame_1,
-                            text = "Código Check-in:",
-                            font = (font_1, 22),
-                            text_color = "black",
-                            )
-    
-    checkin = ctk.CTkLabel(master = frame_1,
-                            text = "123456",
-                            font = (font_1, 22),
-                            text_color = "black",
-                            )
-
-    #------------------------positioning------------------------
-
-
-    frame_principal.place(relx=0.5, rely=0.5, anchor="center")
-    frame_1.place(relx=0.5, rely=0.5, anchor="center")
-    frame_pase.place(relx=0.5, rely=0.09, anchor="center")
-    frame_cheap.place(relx=0.09, rely=0.5, anchor="center")
-    label_aerolinea.place(relx=0.55, rely=0.5, anchor="center")
-    pase_abordaje.place(relx=0.5, rely=0.5, anchor="center")
-    nombre_pasajero.place(relx=0.37, rely=0.27, anchor="center")
-    nombre.place(relx=0.37, rely=0.38, anchor="center")
-    origen_pasajero.place(relx=0.37, rely=0.58, anchor="center")
-    origen.place(relx=0.37, rely=0.68, anchor="center")
-    destino_pasajero.place(relx=0.76, rely=0.58, anchor="center")
-    destino.place(relx=0.76, rely=0.68, anchor="center")
-    fecha_vuelo.place(relx=0.76, rely=0.27, anchor="center")
-    fecha.place(relx=0.85, rely=0.27, anchor="center")
-    hora_vuelo.place(relx=0.76, rely=0.36, anchor="center")
-    hora.place(relx=0.85, rely=0.36, anchor="center")
-    numero_vuelo.place(relx=0.3, rely=0.9, anchor="center")
-    vuelo.place(relx=0.43, rely=0.9, anchor="center")
-    codigo_vuelo.place(relx=0.7, rely=0.9, anchor="center")
-    checkin.place(relx=0.89, rely=0.9, anchor="center")
-
-
+    image1_label.place(x=330, y=1)
+    title_1.place(x=250, y=300)
+    title_2.place(x=600, y=300)
+    text_box_1.place(x=200, y=350)
+    text_box_2.place(x=550, y=350)
+    button_1.place(x=400, y=440)
 
     root9.mainloop()

@@ -1,6 +1,6 @@
 import tabulate as tb
 import WINDOW_2
-import WINDOW_7
+import WINDOW_5
 
 #--------------------------------------SACAR DATOS DEL TXT------------------------------------
 file = open("Datos_Vuelos _Finales.txt", 'r')

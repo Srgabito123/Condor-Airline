@@ -1,121 +1,113 @@
 import customtkinter as ctk
 from PIL import Image
 
-def initialize_root1():
+#--------------------------FUNCIONES-------------------------------------
 
-    #------------------------------FUNCTIONS------------------------------------------
+def switch_to_root9():
+    root1.destroy()
+    import WINDOW_9
+    WINDOW_9.initialize_root9()
 
-    def check_in():
-        text_box_1.delete(0, ctk.END)
-        text_box_2.delete(0, ctk.END)
-        
-    #-------------------------------VENTANA 1------------------------------------------
+def switch_to_root2():
+    root1.destroy()
+    import WINDOW_2
+    WINDOW_2.initialize_root2()
 
-    root1 = ctk.CTk()
-    root1.resizable(0, 0)
+#--------------------------VENTANA 0-------------------------------------
+root1 = ctk.CTk()
 
-    screen_width = root1.winfo_screenwidth()
-    screen_height = root1.winfo_screenheight()
-    window_width = 1000
-    window_height = 600
+root1.resizable(0, 0)
 
-    center_x = int(screen_width / 2 - window_width / 2)
-    center_y = int(screen_height / 2 - window_height / 2)
+screen_width = root1.winfo_screenwidth()
+screen_height = root1.winfo_screenheight()
+window_width = 1000
+window_height = 600
 
-    root1.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
-    root1.config(background="#d7bb9f")
-    root1.title("CONDOR-AIRLINES")
-    root1.iconbitmap("images/ICONO.ico")
+center_x = int(screen_width / 2 - window_width / 2)
+center_y = int(screen_height / 2 - window_height / 2)
 
-    #----------------------------------------FONTS-------------------------------------
+root1.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
+root1.config(background="#d7bb9f")
+root1.title("CONDOR-AIRLINES")
+root1.iconbitmap("images/ICONO.ico")
+#-------------------------fonts-------------------------
 
-    font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
-    font_2 = ctk.CTkFont(family="Cooper Black", size=12)
+font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
+font_2 = ctk.CTkFont(family="Cooper Black", size=12)
 
-    #-------------------------------------IMÁGEN--------------------------------------
-    
-    image_1 = ctk.CTkImage(light_image=Image.open("images/LOGO AEROLINEA.png"),
-                        dark_image=Image.open("images/LOGO AEROLINEA.png"),
-                        size = (340, 340)
-                        )
+#-------------------------Frames-------------------------
 
-    image1_label = ctk.CTkLabel(root1, 
-                                image=image_1, 
-                                text = "", 
-                                bg_color="#d7bb9f"
-                                )
+principal_frame = ctk.CTkFrame(master = root1,
+                        width = 1000,
+                        height = 600,
+                        corner_radius = 10,
+                        fg_color = "#d7bb9f",
+                        border_color = "white",
+                        border_width = 2
+                        ).place(relx = 0.5, rely = 0.5, anchor = "center")
 
-    #------------------------------------TÍTULOS----------------------------------------
+#-------------------------Labels-------------------------
 
-    title_1 = ctk.CTkLabel(root1, 
-                        text="Código", 
-                        width=150, 
-                        height=40, 
-                        font=("Helvetica", 18, "bold"),
-                        text_color="brown",
-                        bg_color="#d7bb9f",
-                        fg_color="beige",
-                        corner_radius=10
-                        )
+welcome_text = ctk.CTkLabel(master = principal_frame,
+                        text = "Bienvenido a Condor Airlines",
+                        text_color= "black",
+                        corner_radius=20,
+                        font = (font_1, 30),
+                        fg_color = "beige",
+                        bg_color= "#d7bb9f"
+                        ).place(relx = 0.5, rely = 0.1, anchor = "center")
 
-    title_2 = ctk.CTkLabel(root1, 
-                        text="Apellido", 
-                        width=150, 
-                        height=40, 
-                        font=("Helvetica", 18, "bold"),
-                        text_color="brown",
-                        bg_color="#d7bb9f",
-                        fg_color="beige",
-                        corner_radius=10
-                        )
+decision_text = ctk.CTkLabel(master = principal_frame,
+                        text = "¿Qué quieres hacer hoy?",
+                        text_color= "black",
+                        corner_radius=20,
+                        font = (font_1, 20),
+                        fg_color = "beige",
+                        bg_color= "#d7bb9f"
+                        ).place(relx = 0.5, rely = 0.65, anchor = "center")
 
-    #------------------------------------CAJAS DE TEXTO----------------------------------------
+#-------------------------Images-------------------------
 
-    text_box_1 = ctk.CTkEntry(root1, 
-                            width=250, 
-                            height=50, 
-                            bg_color="#d7bb9f", 
-                            fg_color="beige",
-                            font = font_1,
-                            border_width=3,
-                            border_color="#a06553"
-                            )
+image_1 = ctk.CTkImage(light_image=Image.open("images/LOGO AEROLINEA.png"),
+                       dark_image=Image.open("images/LOGO AEROLINEA.png"),
+                       size = (300, 300)
+                       )
+image1_label = ctk.CTkLabel(principal_frame, 
+                            image=image_1, 
+                            text = "", 
+                            bg_color="#d7bb9f"
+                            ).place(relx = 0.5, rely = 0.38, anchor = "center")  
+                      
+#-------------------------Buttons-------------------------
 
-    text_box_2 = ctk.CTkEntry(root1, 
-                            width=250, 
-                            height=50,
-                            font = font_1, 
-                            bg_color="#d7bb9f",
-                            fg_color="beige",
-                            border_width=3,
-                            border_color="#a06553"
-                            )
+make_flights_button = ctk.CTkButton(master = principal_frame,
+                        width = 240,
+                        height = 70,
+                        corner_radius = 32,
+                        text = "Realizar un vuelo",
+                        text_color= "white",
+                        fg_color = "#a06553",
+                        border_color = "#a06553",
+                        border_width = 2,
+                        font = font_1,
+                        bg_color= "#d7bb9f",
+                        hover_color= "light blue",
+                        command = switch_to_root2
+                        ).place(relx = 0.25, rely = 0.8, anchor = "center")
 
-    #------------------------------------BOTON----------------------------------------
+make_checkin_button = ctk.CTkButton(master = principal_frame,
+                        width = 240,
+                        height = 70,
+                        corner_radius = 32,
+                        text = "Realizar check-in",
+                        text_color= "white",
+                        fg_color = "#a06553",
+                        border_color = "#a06553",
+                        border_width = 2,
+                        font = font_1,
+                        bg_color= "#d7bb9f",
+                        hover_color= "light blue",
+                        command = switch_to_root9
+                        ).place(relx = 0.75, rely = 0.8, anchor = "center")
 
-    button_1 = ctk.CTkButton(root1, 
-                            text="Realizar Check-In",
-                            text_color="white", 
-                            width=200, 
-                            height=50,
-                            font=("Helvetica", 18, "bold"),
-                            bg_color="#d7bb9f",
-                            fg_color="#a06553",
-                            cursor="hand2",
-                            hover_color="lightblue",
-                            border_width=3,
-                            border_color="#a06553",
-                            corner_radius=10,
-                            command = check_in
-                            )
-
-    #------------------------------------POSICIONAMIENTO----------------------------------------
-
-    image1_label.place(x=330, y=1)
-    title_1.place(x=250, y=300)
-    title_2.place(x=600, y=300)
-    text_box_1.place(x=200, y=350)
-    text_box_2.place(x=550, y=350)
-    button_1.place(x=400, y=440)
-
-    root1.mainloop()
+root1.mainloop()

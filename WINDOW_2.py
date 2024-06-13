@@ -36,7 +36,7 @@ def initialize_root2():
 
     #--------------------------------FUNCIONES---------------------------------------
 
-    def switch_to_root4_5():
+    def switch_to_root3():
         import CONSTANTES
         CONSTANTES.recive_data(origin_value.get(),
                                     destiny_value.get(),
@@ -53,8 +53,8 @@ def initialize_root2():
             return
         else:
             root2.destroy()
-            import WINDOW_4_5          
-            WINDOW_4_5.initialize_root4_5(origin_value.get(),
+            import WINDOW_3          
+            WINDOW_3.initialize_root3(origin_value.get(),
                                             destiny_value.get(),
                                             dates_value.get())
 
@@ -137,11 +137,11 @@ def initialize_root2():
                         border_width = 4
                         )
 
-    #--------------------------------------IMÁGEN----------------------------------------
+    #--------------------------------------IMAGE----------------------------------------
 
-    # icon_image = Image.open("D:/GABO/2024/UNIVERSIDAD/SEMESTRE 1/FUNDAMENTOS DE PROGRAMACIÓN IMPERATIVA/PROYECTO FINAL/Repositorio/PERSONAS.png")
-    # icon_image = icon_image.resize((20, 20), Image.Resampling.LANCZOS)
-    # icon_photo = ImageTk.PhotoImage(icon_image)
+    icon_image = Image.open("images/PERSONAS.png")
+    icon_image = icon_image.resize((20, 20), Image.Resampling.LANCZOS)
+    icon_photo = ImageTk.PhotoImage(icon_image)
 
     #----------------------------------OPTION MENUS----------------------------------------
 
@@ -242,12 +242,12 @@ def initialize_root2():
 
     #-----------------------------------LABELS----------------------------------------
 
-    # icon_people_label = ctk.CTkLabel(image_frame, 
-    #                                 image=icon_photo, 
-    #                                 text="", 
-    #                                 fg_color="beige",
-    #                                 height = 30
-    #                                 )
+    icon_people_label = ctk.CTkLabel(image_frame, 
+                                    image=icon_photo, 
+                                    text="", 
+                                    fg_color="beige",
+                                    height = 30
+                                    )
 
     origin_label = ctk.CTkLabel(root2, 
                                 text = "Origen",
@@ -282,7 +282,7 @@ def initialize_root2():
                                 anchor = "w"
                                 )
 
-    #------------------------------------BOTON----------------------------------------
+    #------------------------------------BUTTONS----------------------------------------
 
     button_search = ctk.CTkButton(root2, 
                         text="Buscar",
@@ -294,9 +294,9 @@ def initialize_root2():
                         fg_color="#a06553",
                         cursor="hand2",
                         hover_color="lightblue",
-                        command = switch_to_root4_5)
+                        command = switch_to_root3)
 
-    #----------------------------------POSICIONAMIENTO----------------------------------------
+    #----------------------------------POSITIONING----------------------------------------
 
     frame_1.place(x = 70, y = 70)
     roundtrip_frame.place(x = 97, y = 105)
@@ -308,7 +308,7 @@ def initialize_root2():
     roundtrip_optionmenu.place(x = 100, y = 108)
     image_frame.place(x = 780, y = 108)
     amountpeople_optionmenu.grid(row=0, column=1, sticky="nsew", padx=(0, 5))
-    #icon_people_label.grid(row=0, column=0, sticky="nsew", padx=(5, 0))
+    icon_people_label.grid(row=0, column=0, sticky="nsew", padx=(5, 0))
     origin_label.place(x = 100, y = 244)
     destination_label.place(x = 323, y = 244)
     origin_optionmenu.place(x = 100, y = 260)

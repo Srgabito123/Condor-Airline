@@ -1,24 +1,11 @@
+from tkinter import *
 import customtkinter as ctk
-
-def initialize_root3():
-    #--------------------------------------FUNCIONES---------------------------------------
-
-    def switch_to_root8(): 
-        root3.destroy()
-        import WINDOW_8
-        WINDOW_8.initialize_root8()
-
-    def is_seat_selected(row, col):
-        seat = (row, col)
-        button = seat_buttons[row][col]
-        if seat in selected_seats:
-            selected_seats.remove(seat)
-            button.configure(fg_color="beige")
-        else:
-            selected_seats.add(seat)
-            button.configure(fg_color="#a06553")
-
-    #--------------------------------------VENTANA3----------------------------------------
+import CONSTANTES
+import WINDOW_4
+    
+def initialize_root3(origin_city, destiny_city, departure_date):
+    
+    #--------------------------------VENTANA 4_5---------------------------------------
 
     root3 = ctk.CTk()
     root3.resizable(0, 0)
@@ -36,215 +23,567 @@ def initialize_root3():
     root3.title("CONDOR-AIRLINES")
     root3.iconbitmap("images/ICONO.ico")
 
-    #---------------------------------------FRAMES-----------------------------------------
+    #---------------------------FUNCTIONS---------------------------
 
-    outside_line = ctk.CTkFrame(root3, 
-                                width=860, 
-                                height=515,
-                                bg_color="#d7bb9f",
-                                fg_color="#d7bb9f",
-                                corner_radius=20,
-                                border_color="beige",
-                                border_width=4
-                                )
+    def switch_to_window4(num, takeoff_hour, landing_hour, exit_city, coming_city, price, flight_code, flight_date_):
+        root3.destroy()
+        import WINDOW_4
+        WINDOW_4.initialize_root4(num, takeoff_hour, landing_hour, exit_city, coming_city, price, flight_code, flight_date_)
+        
 
-    text_frame = ctk.CTkFrame(root3, 
-                            width=230, 
-                            height=40,
-                            bg_color="#d7bb9f",
+    def eleccion_vuelo(min_price, mid_price, max_price, takeoff_hour, landing_hour, exit_city, coming_city, flight_code, flight_date_):
+
+        if flight_choice_frame.winfo_viewable():
+            flight_choice_frame.place_forget()
+        else:
+            flight_choice_frame.place(relx = 0.49, rely = 0.6, anchor = "center")
+
+            plata_clase = ctk.CTkButton(master = flight_choice_frame,
+                            width=285,
+                            height=400, 
                             fg_color="beige",
-                            corner_radius=25
+                            border_width=2,
+                            corner_radius=32,
+                            hover_color= "beige",
+                            text= ""
                             )
 
-    seatsbutton_frame = ctk.CTkFrame(root3,
-                                width=320, 
-                                height=420,
-                                bg_color="#d7bb9f",
-                                fg_color="beige",
-                                corner_radius=20
-                                )
-
-    premium_zone_frame = ctk.CTkFrame(seatsbutton_frame, 
-                                width=300, 
-                                height=133,
-                                bg_color="beige",
-                                fg_color="#ddbdb2",
-                                corner_radius=4
-                                )
-
-    diamond_zone_frame = ctk.CTkFrame(seatsbutton_frame, 
-                                width=300, 
-                                height=133,
-                                bg_color="beige",
-                                fg_color="#d2a798",
-                                corner_radius=4
-                                )
-
-
-    aluminio_zone_frame = ctk.CTkFrame(seatsbutton_frame, 
-                                width=300, 
-                                height=133,
-                                bg_color="beige",
-                                fg_color="#c7917e",
-                                corner_radius=4
-                                )
-
-    premium_frame = ctk.CTkFrame(root3, 
-                                width=150, 
-                                height=40,
-                                bg_color="#d7bb9f",
-                                fg_color="#ddbdb2",
-                                corner_radius=5,
-                                border_color="#b38371",
-                                border_width=3
-                                )
-
-    diamante_frame = ctk.CTkFrame(root3, 
-                                width=150, 
-                                height=40,
-                                bg_color="#d7bb9f",
-                                fg_color="#d2a798",
-                                corner_radius=5,
-                                border_color="#b38371",
-                                border_width=3
-                                )
-
-    aluminio_frame = ctk.CTkFrame(root3, 
-                                width=150, 
-                                height=40,
-                                bg_color="#d7bb9f",
-                                fg_color="#c7917e",
-                                corner_radius=5,
-                                border_color="#b38371",
-                                border_width=3
-                                )
-
-    #---------------------------------------LABELS---------------------------------------
-
-    letter_seats_text = ctk.CTkLabel(root3, 
-                                text=" A         B          C          D          E          F  ", 
-                                font=("Poppins", 16),
-                                text_color="brown",
-                                bg_color="#d7bb9f",
-                                fg_color="beige",
-                                width = 260,
-                                corner_radius=5
-                                )
-
-    seats_text = ctk.CTkLabel(text_frame, 
-                                text="SELECCIÓN DE ASIENTOS", 
-                                font=("Poppins", 18),
-                                text_color="brown",
-                                bg_color="beige",
-                                fg_color="beige",
-                                corner_radius=15
-                                )
-
-    premium_label = ctk.CTkLabel(premium_frame, 
-                                text="Premium", 
-                                font=("Poppins", 16, "bold"),
-                                text_color="white",
-                                bg_color="#d7bb9f",
-                                fg_color="#ddbdb2",
-                                corner_radius=5
-                                )
-
-    diamante_label = ctk.CTkLabel(diamante_frame, 
-                                text="Diamante", 
-                                font=("Poppins", 16, "bold"),
-                                text_color="white",
-                                bg_color="#d7bb9f",
-                                fg_color="#d2a798",
-                                corner_radius=5
-                                )
-
-    aluminio_label = ctk.CTkLabel(aluminio_frame, 
-                                text="Plata", 
-                                font=("Poppins", 16, "bold"),
-                                text_color="white",
-                                bg_color="#d7bb9f",
-                                fg_color="#c7917e",
-                                corner_radius=5
-                                )
-
-    #---------------------------------------BOTONES---------------------------------------
-
-    select_button = ctk.CTkButton(root3, 
-                                    text="Seleccionar",
-                                    text_color="white", 
-                                    width=150, 
-                                    height=40,
-                                    font=("Poppins", 16, "bold"),
-                                    bg_color="#d7bb9f",
-                                    fg_color="#a06553",
-                                    cursor="hand2",
-                                    border_width=3,
-                                    border_color="beige",
-                                    hover_color="lightblue",
-                                    command=switch_to_root8
+            diamante_clase = ctk.CTkButton(master = flight_choice_frame,
+                                    width=285,
+                                    height=400, 
+                                    fg_color="beige",
+                                    hover_color= "beige",
+                                    border_width=2,
+                                    corner_radius=32
                                     )
 
-    seat_buttons = []
-    selected_seats = set()
-    rows = 12
-    columns = 6
-
-    for row in range(rows):
-        row_buttons = []
-        for col in range(columns):
-            if row < 4:
-                button = ctk.CTkButton(premium_zone_frame,
-                                    width=22,
-                                    height=22,
-                                    text="",
-                                    command=lambda row=row, col=col: is_seat_selected(row, col),
+            premium_clase = ctk.CTkButton(master = flight_choice_frame,
+                                    width=285,
+                                    height=400, 
                                     fg_color="beige",
-                                    hover_color="gray",
-                                    border_color="#a06553",
-                                    border_width=2)
-                button.grid(row=row, column=col, padx=14, pady=8, sticky="nsew")
-            elif row < 8:
-                button = ctk.CTkButton(diamond_zone_frame,
-                                    width=22,
-                                    height=22,
-                                    text="",
-                                    command=lambda row=row, col=col: is_seat_selected(row, col),
-                                    fg_color="beige",
-                                    hover_color="gray",
-                                    border_color="#a06553",
-                                    border_width=2)
-                button.grid(row=row-4, column=col, padx=14, pady=8, sticky="nsew")
-            else:
-                button = ctk.CTkButton(aluminio_zone_frame,
-                                    width=22,
-                                    height=22,
-                                    text="",
-                                    command=lambda row=row, col=col: is_seat_selected(row, col),
-                                    fg_color="#a06553",
-                                    hover_color="#a06553",
-                                    border_color="#a06553",
-                                    border_width=2)
-                button.grid(row=row-8, column=col, padx=14, pady=8, sticky="nsew")
-            row_buttons.append(button)
-        seat_buttons.append(row_buttons)
+                                    hover_color= "beige",
+                                    border_width=2,
+                                    corner_radius=32
+                                    )
 
-    #------------------------------------POSICIONAMIENTO----------------------------------------
+            select_plata = ctk.CTkButton(master = plata_clase,
+                                    width=230,
+                                    height=30, 
+                                    font = (font_1, 15),
+                                    fg_color="light pink",
+                                    hover_color= "light blue",
+                                    border_width=2,
+                                    corner_radius=36,
+                                    text_color="black",
+                                    text="Seleccionar",
+                                    command=lambda: switch_to_window4(3, takeoff_hour, landing_hour, 
+                                                                      exit_city, coming_city, min_price, flight_code,
+                                                                      flight_date_)
+                                    )
 
-    outside_line.place(x=70, y = 25)
-    text_frame.place(x=-20, y = 15)
-    letter_seats_text.place(x=308, y = 60)
-    seats_text.pack(fill="both", expand=True, pady = 10, padx = 10)
-    seatsbutton_frame.place(x=290, y = 80)
-    premium_zone_frame.grid(row= 0, column = 0, padx = 10, pady = 10)
-    diamond_zone_frame.grid(row = 1, column = 0)
-    aluminio_zone_frame.grid(row = 2, column = 0, padx = 10, pady = 10)
-    premium_frame.place(x=635, y=142)
-    diamante_frame.place(x=635, y=280)
-    aluminio_frame.place(x=635, y=428)
-    premium_label.pack(fill="both", expand=True, pady=5, padx=5)
-    diamante_label.pack(fill="both", expand=True, pady=5, padx=5)
-    aluminio_label.pack(fill="both", expand=True, pady=5, padx=5)
-    select_button.place(x=790, y=515)
+            select_diamante = ctk.CTkButton(master = diamante_clase,
+                                    width=230,
+                                    height=30, 
+                                    font = (font_1, 15),
+                                    fg_color="light pink",
+                                    hover_color= "light blue",
+                                    border_width=2,
+                                    corner_radius=36,
+                                    text_color="black",
+                                    text="Seleccionar",
+                                    command=lambda: switch_to_window4(2, takeoff_hour, landing_hour, 
+                                                                      exit_city, coming_city, mid_price, flight_code,
+                                                                      flight_date_ )
+                                    )
 
+            select_premium = ctk.CTkButton(master = premium_clase,
+                                    width=230,
+                                    height=30, 
+                                    font = (font_1, 15),
+                                    fg_color="light pink",
+                                    hover_color= "light blue",
+                                    border_width=2,                    
+                                    corner_radius=36,
+                                    text_color="black",
+                                    text="Seleccionar",
+                                    command=lambda: switch_to_window4(1, takeoff_hour, landing_hour, 
+                                                                      exit_city, coming_city, max_price, flight_code,
+                                                                      flight_date_ )
+                                    )
+
+            close_window = ctk.CTkButton(master = flight_choice_frame,
+                                    width=230,
+                                    height=30, 
+                                    font = (font_1, 15),
+                                    fg_color="light blue",
+                                    hover_color= "light pink",
+                                    border_width=2,
+                                    corner_radius=36,
+                                    text_color="black",
+                                    text="Cerrar",
+                                    command=cerrar_ventana
+                                    )
+            nombre_plata = ctk.CTkLabel(master = plata_clase,
+                                text = "Plata",
+                                fg_color = "transparent",
+                                text_color = "black",
+                                font = font_1,
+                                width = 0.3,
+                                height = 0.3
+                                )
+            precio_plata = ctk.CTkLabel(master = plata_clase,
+                                        text = f"Desde ${min_price} COP",
+                                        fg_color = "transparent",
+                                        text_color = "black",
+                                        font = (font_1, 14),
+                                        width = 0.3,
+                                        height = 0.3
+                                        )
+
+            texto_plata = ctk.CTkLabel(master = plata_clase,
+                                        text = plata,
+                                        fg_color = "transparent",
+                                        bg_color= "transparent",
+                                        text_color = "black",
+                                        font = (font_1, 13),
+                                        width = 100,
+                                        height = 100
+                                        )
+
+            nombre_diamante = ctk.CTkLabel(master = diamante_clase,
+                                        text = "Diamante",
+                                        fg_color = "transparent",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.3,
+                                        height = 0.3
+                                        )
+                
+            precio_diamante = ctk.CTkLabel(master = diamante_clase,
+                                        text = f"Desde ${mid_price} COP",
+                                        fg_color = "transparent",
+                                        text_color = "black",
+                                        font = (font_1, 13),
+                                        width = 0.3,
+                                        height = 0.3
+                                        )
+
+            texto_diamante = ctk.CTkLabel(master = diamante_clase,
+                                        text = diamante,
+                                        fg_color = "transparent",
+                                        text_color = "black",
+                                        bg_color= "transparent",
+                                        font = (font_1, 12.5),
+                                        width = 100,
+                                        height = 90,
+                                        )
+
+            nombre_premium = ctk.CTkLabel(master = premium_clase,
+                                        text = "Premium",
+                                        fg_color = "transparent",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.3,
+                                        height = 0.3
+                                        )
+                
+            precio_premium = ctk.CTkLabel(master = premium_clase,
+                                        text = f"Desde ${max_price} COP",
+                                        fg_color = "transparent",
+                                        text_color = "black",
+                                        font = (font_1, 13),
+                                        width = 0.3,
+                                        height = 0.3
+                                        )
+
+            texto_premium = ctk.CTkLabel(master = premium_clase,
+                                        text = premium,
+                                        fg_color = "transparent",
+                                        bg_color= "transparent",
+                                        text_color = "black",
+                                        font = (font_1, 12.5),
+                                        width = 100,
+                                        height = 100
+                                        )
+            
+            nombre_plata.place(relx=0.5, rely=0.05, anchor="center")
+            precio_plata.place(relx=0.5, rely=0.15, anchor="center")
+            texto_plata.place(relx=0.5, rely=0.5, anchor="center")
+            nombre_diamante.place(relx=0.5, rely=0.05, anchor="center")
+            precio_diamante.place(relx=0.5, rely=0.15, anchor="center")
+            texto_diamante.place(relx=0.5, rely=0.5, anchor="center")
+            nombre_premium.place(relx=0.5, rely=0.05, anchor="center")
+            precio_premium.place(relx=0.5, rely=0.15, anchor="center")
+            texto_premium.place(relx=0.5, rely=0.5, anchor="center")
+            plata_clase.place(relx=0.17, rely=0.03, anchor="n")
+            diamante_clase.place(relx=0.50, rely=0.03, anchor="n")
+            premium_clase.place(relx=0.83, rely=0.03, anchor="n")
+            close_window.place(relx=0.5, rely=0.93, anchor="center") 
+            select_plata.place(relx=0.5, rely=0.93, anchor="center")
+            select_diamante.place(relx=0.5, rely=0.93, anchor="center")
+            select_premium.place(relx=0.5, rely=0.93, anchor="center")
+
+
+    def cerrar_ventana():
+        flight_choice_frame.place_forget()
+
+    #---------------------------VARIABLES---------------------------
+
+    departure_city = origin_city
+    arrival_city = destiny_city
+    ida = f"Ida: {departure_city} - {arrival_city}"
+
+    fecha = departure_date
+    flechita = "-------------------------------------->"
+    plata = """
+    1 artículo personal (bolso) 
+    (Debe caber debajo del asiento)
+
+    1 equipaje de mano (10 kg) 
+    (Desde $195.100 COP)
+
+    Equipaje de bodega (23 kg) 
+    (Desde $175.600 COP)
+
+    Asiento Economy 
+    (Aleatoria-clasificado Aluminio)
+
+    Cambios de vuelo (No es permitido)
+
+    Reembolso (No es permitido)"""
+
+    diamante = """
+    1 artículo personal (bolso) 
+    (Debe caber debajo del asiento)
+
+    1 equipaje de bodega (23 kg) 
+    Debe caber en el 
+    compartimiento superior
+
+    1 equipaje de mano (10 kg) 
+    (Entrega el equipaje en el counter)
+
+    Asiento Economy 
+    (Filas específicas disponibles
+    de manera aleatoria)
+
+    Cambios de vuelo (No es permitido)
+
+    Reembolso (No es permitido)"""
+
+    premium = """
+    1 artículo personal (bolso) 
+    (Debe caber debajo del asiento)
+
+    1 equipaje de mano (10 kg) 
+    Debe caber en el 
+    compartimiento superior
+
+    1 equipaje de bodega (23 kg) 
+    (Entrega el equipaje en el counter)
+    Asiento Plus 
+    (Sujeto a disponibilidad
+    clasificado Premium)
+
+    Cambios de vuelo 
+    (Sin cargo por cambio, antes del vuelo)
+
+    Reembolso (No es permitido)"""
+
+    #---------------------------FONTS---------------------------
+
+    font_1 = ctk.CTkFont(family="Inherit", size=18, weight="bold")
+
+    #---------------------------FRAMES---------------------------
+
+    principal_frame = ctk.CTkFrame(master = root3,
+                            width = 1000,
+                            height = 600,
+                            corner_radius = 10,
+                            fg_color = "#d7bb9f",
+                            border_color = "white",
+                            border_width = 2,
+                            bg_color = "transparent"
+                            )
+    
+    date_buttons_frame = ctk.CTkFrame(master = principal_frame,
+                                        width = 880,
+                                        height = 40,
+                                        fg_color = "#d7bb9f",
+                                        )   
+
+    flights_frame = ctk.CTkScrollableFrame(master = principal_frame,
+                            width = 930,
+                            height = 400,
+                            fg_color = "transparent",
+                            corner_radius = 30,
+                            scrollbar_button_color = "beige",
+                            orientation = "vertical"
+                            )
+
+    flight_choice_frame = ctk.CTkFrame(master = principal_frame,
+                            width=940,
+                            height=470, 
+                            fg_color="white",
+                            border_width=2,
+                            border_color="beige",
+                            corner_radius=32
+                            )
+
+    #---------------------------BOTONES---------------------------
+
+    for i in range(len(CONSTANTES.flights)):
+
+        button_flight = ctk.CTkButton(master = flights_frame,    
+                                width = 890, 
+                                height = 160, 
+                                corner_radius = 50,
+                                fg_color = "beige",
+                                hover_color = "beige",
+                                text = " ",
+                                border_color= "black",
+                                border_width= 1.5,
+                                command=lambda i=i:eleccion_vuelo(CONSTANTES.min_price[i], 
+                                                                  CONSTANTES.mid_price[i], 
+                                                                  CONSTANTES.max_price[i],
+                                                                  CONSTANTES.takeoff_hour[i],
+                                                                  CONSTANTES.landing_hour[i],
+                                                                  CONSTANTES.exit_city[i],
+                                                                  CONSTANTES.coming_city[i],
+                                                                  CONSTANTES.flight_code[i],
+                                                                  CONSTANTES.flight_date_[i])
+                                )
+
+        departure_hour_text = ctk.CTkLabel(master = button_flight, 
+                                text = CONSTANTES.departure_hour[i],
+                                fg_color = "transparent",
+                                bg_color= "beige",
+                                text_color = "black",
+                                font = font_1,
+                                width = 0.1,
+                                height = 0.3
+                                )
+
+        arrival_hour_text = ctk.CTkLabel(master = button_flight, 
+                                text = CONSTANTES.arrival_hour[i],
+                                fg_color = "beige",
+                                text_color = "black",
+                                font = font_1,
+                                width = 0.1,
+                                height = 0.3,
+                                corner_radius = 10,
+                                )
+
+        departure_place_text = ctk.CTkLabel(master = button_flight, 
+                                text = departure_city,
+                                fg_color = "Beige",
+                                text_color = "black",
+                                font = font_1,
+                                width = 0.1,
+                                height = 0.3,
+                                corner_radius = 10,
+                                )
+
+        arrival_place_text = ctk.CTkLabel(master = button_flight, 
+                                text = arrival_city,
+                                fg_color = "Beige",
+                                text_color = "black",
+                                font = font_1,
+                                width = 0.1,
+                                height = 0.3,
+                                corner_radius = 10,
+                                )
+
+        text_desde = ctk.CTkLabel(master = button_flight,
+                                text = """DESDE:
+
+                                    COP $""",
+                                fg_color = "transparent",
+                                text_color = "black",
+                                font = font_1,
+                                width = 80,
+                                height = 80,
+                                corner_radius = 10,
+                                )
+
+        text_precio = ctk.CTkLabel(master = button_flight,
+                                text = CONSTANTES.price[i],
+                                fg_color = "beige",
+                                text_color = "black",
+                                font = font_1,
+                                width = 60,
+                                height = 30,
+                                corner_radius = 10,
+                                )
+
+        text_flechita = ctk.CTkLabel(master = button_flight,
+                                text = flechita,
+                                fg_color = "beige",
+                                text_color = "black",
+                                font = ("roboto", 20),
+                                width = 0.3,
+                                height = 0.3,
+                                )
+        
+        button_flight.pack(padx=5, pady=10, expand= True, anchor = "center")
+        departure_hour_text.place(relx = 0.1, rely = 0.4, anchor = "center")
+        departure_place_text.place(relx = 0.1, rely = 0.54, anchor = "center")
+        arrival_hour_text.place(relx = 0.5, rely = 0.4, anchor = "center")
+        arrival_place_text.place(relx = 0.5, rely = 0.54, anchor = "center")
+        text_desde.place(relx = 0.68, rely = 0.4, anchor = "center")
+        text_precio.place(relx = 0.86, rely = 0.53, anchor = "center")
+        text_flechita.place(relx = 0.3, rely = 0.45, anchor = "center")
+
+        def replace_buttons(departure_city, arrival_city, date):
+
+            CONSTANTES.recive_data(departure_city, arrival_city, date)
+            for widget in flights_frame.winfo_children():
+                widget.destroy()
+            
+
+            for i in range(len(CONSTANTES.flights)):
+                button_flight = ctk.CTkButton(master = flights_frame,    
+                                        width = 890, 
+                                        height = 160, 
+                                        corner_radius = 50,
+                                        fg_color = "beige",
+                                        hover_color = "beige",
+                                        text = " ",
+                                        border_color= "black",
+                                        border_width= 1.5,
+                                        command=lambda i=i:eleccion_vuelo(CONSTANTES.min_price[i], 
+                                                                  CONSTANTES.mid_price[i], 
+                                                                  CONSTANTES.max_price[i],
+                                                                  CONSTANTES.takeoff_hour[i],
+                                                                  CONSTANTES.landing_hour[i],
+                                                                  CONSTANTES.exit_city[i],
+                                                                  CONSTANTES.coming_city[i],
+                                                                  CONSTANTES.flight_code[i],
+                                                                  CONSTANTES.flight_date_[i])
+                                                                )
+
+                departure_hour_text = ctk.CTkLabel(master = button_flight, 
+                                        text = CONSTANTES.departure_hour[i],
+                                        fg_color = "transparent",
+                                        bg_color= "beige",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.1,
+                                        height = 0.3
+                                        )
+
+                arrival_hour_text = ctk.CTkLabel(master = button_flight, 
+                                        text = CONSTANTES.arrival_hour[i],
+                                        fg_color = "beige",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 30,
+                                        height = 0.3,
+                                        corner_radius = 10,
+                                        )
+
+                departure_place_text = ctk.CTkLabel(master = button_flight, 
+                                        text = departure_city,
+                                        fg_color = "Beige",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.1,
+                                        height = 0.3,
+                                        corner_radius = 10,
+                                        )
+
+                arrival_place_text = ctk.CTkLabel(master = button_flight, 
+                                        text = arrival_city,
+                                        fg_color = "Beige",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 12,
+                                        height = 0.3,
+                                        corner_radius = 10,
+                                        )
+
+                text_desde = ctk.CTkLabel(master = button_flight,
+                                        text = """DESDE:
+
+                                            COP $""",
+                                        fg_color = "transparent",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.08,
+                                        height = 0.3,
+                                        corner_radius = 10,
+                                        )
+
+                text_precio = ctk.CTkLabel(master = button_flight,
+                                        text = CONSTANTES.price[i],
+                                        fg_color = "beige",
+                                        text_color = "black",
+                                        font = font_1,
+                                        width = 0.1,
+                                        height = 0.3,
+                                        corner_radius = 10,
+                                        )
+
+                text_flechita = ctk.CTkLabel(master = button_flight,
+                                        text = flechita,
+                                        fg_color = "beige",
+                                        text_color = "black",
+                                        font = ("roboto", 20),
+                                        width = 0.3,
+                                        height = 0.3,
+                                        )
+                
+                button_flight.pack(padx=5, pady=10, expand= True, anchor = "center")
+                departure_hour_text.place(relx = 0.1, rely = 0.4, anchor = "center")
+                departure_place_text.place(relx = 0.1, rely = 0.54, anchor = "center")
+                arrival_hour_text.place(relx = 0.5, rely = 0.4, anchor = "center")
+                arrival_place_text.place(relx = 0.5, rely = 0.54, anchor = "center")
+                text_desde.place(relx = 0.7, rely = 0.4, anchor = "center")
+                text_precio.place(relx = 0.89, rely = 0.53, anchor = "center")
+                text_flechita.place(relx = 0.3, rely = 0.45, anchor = "center")
+
+    for i in range(len(CONSTANTES.all_dates)):
+        day_button = ctk.CTkButton(master = date_buttons_frame,
+                                text = f"Fecha: {CONSTANTES.all_dates[i]}",
+                                font = (font_1, 13), 
+                                text_color = "black",
+                                width = 70, 
+                                height = 50, 
+                                corner_radius = 32,
+                                border_color= "black",
+                                border_width= 1.5, 
+                                fg_color = "beige",  
+                                hover_color = "light blue",
+                                command=lambda i=i: replace_buttons(departure_city, arrival_city,
+                                                    CONSTANTES.all_dates[i])
+                                
+                                )
+        day_button.pack(side = LEFT, padx = 10)
+
+
+    
+
+    #---------------------------TEXTOS---------------------------
+
+    text_viaje = ctk.CTkLabel(master = principal_frame, 
+                            text = ida, 
+                            fg_color = "beige", 
+                            width = 0.2, 
+                            height = 0.065, 
+                            text_color = "black", 
+                            font = font_1, 
+                            corner_radius = 10, 
+                            bg_color = "#d7bb9f",
+                            )
+    
+    
+   
+                        
+    #---------------------------POSICIONAMIENTO-----------------------
+
+    principal_frame.place(relx = 0.5, rely = 0.5, anchor = "center")
+    flights_frame.place(relx = 0.5, rely = 0.59, anchor = "center")
+    flight_choice_frame.place_forget()
+    text_viaje.place(x = 6, y = 8, relwidth = 0.3, relheight = 0.065)
+    date_buttons_frame.place(x = 50, y = 70)
     root3.mainloop()
-
