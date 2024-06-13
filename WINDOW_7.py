@@ -4,6 +4,7 @@ from tkinter import messagebox
 import AUTENTICACIÓN_CORREO
 import CONSTANTES
 import random
+import WINDOW_6
 
 def initialize_root7():
     global email
@@ -46,7 +47,7 @@ def initialize_root7():
         if phone.get().isdigit() == False:
             messagebox.showerror("ERROR", "Ingrese solo números en el campo de teléfono")
             return
-        else: 
+        else:
             root7.destroy()
             import WINDOW_3
             WINDOW_3.initialize_root3()
@@ -68,8 +69,7 @@ def initialize_root7():
     value_genders = ctk.StringVar()
     value_genders.set(gender_options[0])
 
-    id_types = ["C. de Ciudadanía (CC)", "C. de Extranjería (CE)",
-                "Número de Identificación Tributario (NIT)", "Pasaporte"]
+    id_types = ["C. de Ciudadanía (CC)", "C. de Extranjería (CE)", "NIT", "Pasaporte"]
     value_id = ctk.StringVar()
     value_id.set(id_types[0])
     

@@ -14,7 +14,7 @@ def initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, pr
    coming_city_f = coming_city
    price_f = price
    flight_code_f = flight_code
-   flight_date_f = CONSTANTES.flight_date_
+   flight_date_f = flight_date_
 
    root6 = ctk.CTk()
    root6.title("CONDOR-AIRLINES")

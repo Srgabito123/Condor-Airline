@@ -25,10 +25,10 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
 
     #---------------------------FUNCTIONS---------------------------
 
-    def switch_to_window6(num, takeoff_hour, landing_hour, exit_city, coming_city, price, flight_code, flight_date_ ):
+    def switch_to_window6(num, takeoff_hour, landing_hour, exit_city, coming_city, price, flight_code, flight_date_):
         root4_5.destroy()
         import WINDOW_6
-        WINDOW_6.initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, price, flight_code, flight_date_ )
+        WINDOW_6.initialize_root6(num, takeoff_hour, landing_hour, exit_city, coming_city, price, flight_code, flight_date_)
         
 
     def eleccion_vuelo(min_price, mid_price, max_price, takeoff_hour, landing_hour, exit_city, coming_city, flight_code, flight_date_):
@@ -554,7 +554,8 @@ def initialize_root4_5(origin_city, destiny_city, departure_date):
                                 border_width= 1.5, 
                                 fg_color = "beige",  
                                 hover_color = "light blue",
-                                command=lambda i=i: replace_buttons(departure_city, arrival_city, CONSTANTES.all_dates[i])
+                                command=lambda i=i: replace_buttons(departure_city, arrival_city,
+                                                    CONSTANTES.all_dates[i])
                                 
                                 )
         day_button.pack(side = LEFT, padx = 10)
